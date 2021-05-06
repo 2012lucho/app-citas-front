@@ -8,8 +8,8 @@ import { NavController } from '@ionic/angular';
 })
 export class EnterCodePage implements OnInit {
 
-  private confirmationCode: string = "";
-  private email: string = "test.coode@gmail.com";
+  public confirmationCode: string = "";
+  public email: string = "test.coode@gmail.com";
 
   constructor(
     private navCtrl: NavController
