@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-contacts',
+  templateUrl: 'contacts.page.html',
+  styleUrls: ['contacts.page.scss']
 })
-export class Tab2Page {
+export class ContactsPage {
 
-  private contactsList: Array<any> = [
+  public contactsList: Array<any> = [
     { name: 'Bar', avatar: 'https://ui-avatars.com/api/?name=Bar', status: 'Idk' },
     { name: 'Dave', avatar: 'https://ui-avatars.com/api/?name=Dave', status: 'Life is good' },
     { name: 'Foo', avatar: 'https://ui-avatars.com/api/?name=Foo', status: 'Doing anything :D' },

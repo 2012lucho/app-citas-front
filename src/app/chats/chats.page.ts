@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-chats',
+  templateUrl: 'chats.page.html',
+  styleUrls: ['chats.page.scss']
 })
-export class Tab1Page {
+export class ChatsPage {
 
-  private chatList: Array<any> = [
+  public chatList: Array<any> = [
     {
       user: { name: 'John Doe', avatar: 'https://ui-avatars.com/api/?name=John+Doe' },
       message: { snippet: 'See you later', created: '09:00 AM' }

@@ -9,15 +9,14 @@ import { Platform, NavController } from '@ionic/angular';
 })
 export class SignupPage implements OnInit {
 
-  private countries: Array<any> = countryCodes;
-  private confirmData: any = { code: '+1' }
-  private logoPath = "assets/imgs/chat.png";
+  public countries: Array<any> = countryCodes;
+  public confirmData: any = { code: '+1' }
 
   constructor(
     private platform: Platform,
     private navCtrl: NavController
   ) {
-    if (!this.platform.is('cordova')) this.logoPath = `/${this.logoPath}`;
+    
   }
 
   ngOnInit() {

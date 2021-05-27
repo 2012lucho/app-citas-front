@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConversationPage implements OnInit {
 
-  private contactInfo: any = {
+  public contactInfo: any = {
     name: 'JOHN DOE',
     status: 'ONLINE'
   }
-  private showOptions: boolean = false;
-  private messages: Array<any> = [
+  public showOptions: boolean = false;
+  public messages: Array<any> = [
     { text: "Hola, coma andas?", type: 'received', created: '14:02' },
     { text: "Bien", type: 'send', created: '14:05' },
     { text: "Te gustaría salir al cine hoy?", type: 'send', created: '14:05' },
@@ -38,6 +38,10 @@ export class ConversationPage implements OnInit {
       return;
     }
     this.showOptions = !this.showOptions;
+  }
+
+  showContactProfile(){
+    
   }
 
 }
