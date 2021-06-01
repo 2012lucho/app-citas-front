@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
+import { AuthService }     from '../services/auth/auth.service';
+
 @Component({
   selector: 'app-contacts',
   templateUrl: 'contacts.page.html',
@@ -16,7 +18,8 @@ export class ContactsPage {
   ];
 
   constructor(
-    private navCtrl: NavController
+    private navCtrl:     NavController,
+    private authService: AuthService
   ) {}
 
   private showConversationPage() {

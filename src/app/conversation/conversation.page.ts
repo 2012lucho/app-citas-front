@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthService }     from '../services/auth/auth.service';
+
 @Component({
   selector: 'app-conversation',
   templateUrl: './conversation.page.html',
@@ -27,7 +29,9 @@ export class ConversationPage implements OnInit {
   ];
 
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
   }
@@ -41,7 +45,7 @@ export class ConversationPage implements OnInit {
   }
 
   showContactProfile(){
-    
+
   }
 
 }
