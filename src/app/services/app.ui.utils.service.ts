@@ -19,7 +19,7 @@ export class AppUIUtilsService {
   ) { }
 
   getAppTitle(){
-    return 'Lymp.io';
+    return 'AppCitas';
   }
 
   showMessage( msg:string ){
