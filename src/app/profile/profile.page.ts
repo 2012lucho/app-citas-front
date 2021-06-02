@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { AuthService }     from '../services/auth/auth.service';
+
 @Component({
   selector: 'app-profile',
   templateUrl: 'profile.page.html',
@@ -7,6 +9,8 @@ import { Component } from '@angular/core';
 })
 export class ProfilePage {
 
-  constructor() {}
+  constructor(
+    private authService: AuthService
+  ) {}
 
 }

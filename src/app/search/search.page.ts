@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { AuthService }     from '../services/auth/auth.service';
+
 @Component({
   selector: 'app-search',
   templateUrl: 'search.page.html',
@@ -7,7 +9,9 @@ import { Component } from '@angular/core';
 })
 export class SearchPage {
 
-  constructor() {}
+  constructor(
+    private authService: AuthService
+  ) {}
 
   public profiles:any = [
     { img:"https://griffonagedotcom.files.wordpress.com/2016/07/profile-modern-2e.jpg" },
