@@ -36,7 +36,7 @@ export class AuthService {
             localStorage.setItem( this.confGral['appName']+'enterprise_id', JSON.stringify( (data as any).enterprise_id ) );
             localStorage.setItem( this.confGral['appName']+'logedIn',      JSON.stringify( (data as any).status ) );
             localStorage.setItem( this.confGral['appName']+'userName',     JSON.stringify( (data as any).username ) );
-            this.router.navigate( '/tabs/tabs/search' );
+            this.router.navigate( ['/tabs/tabs/search'] );
           } else {
             this.gral.showMessage( 'Usuario o contraseña incorrecta.' );
           }
