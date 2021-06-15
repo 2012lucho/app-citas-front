@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { MessageComponent } from './components/message/message.component';
+import { AuthenticationGuard  } from './services/auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MessageComponent } from './components/message/message.component';
   providers: [
     StatusBar,
     SplashScreen,
+    AuthenticationGuard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

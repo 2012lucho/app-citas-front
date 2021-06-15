@@ -16,7 +16,6 @@ export class ProfileService {
     private authService:   AuthService
   ) {
     this.configData = this.configService.getConfigData();
-    this.nav['toProfile'] = new Subject();
   }
 
   private configData:any = {};
@@ -98,14 +97,4 @@ export class ProfileService {
         }
       );
   }
-
-  ////////////////////////////////////////
-  /// NAVEGACION
-  ////////////////////////////////////////
-  public nav:any;
-  goToProfile(){
-    this.router.navigate( [ '/tabs/tabs/profile' ] );
-    this.nav['toProfile'].next(true);
-  }
-
 }
