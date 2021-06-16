@@ -1,0 +1,27 @@
+<ion-content >
+  <div class="padding">
+
+    <div class="logo">
+      <img  src="assets/imgs/logo.png" />
+    </div>
+
+    <ion-item >
+      <ion-label color="light">Email</ion-label>
+      <ion-input color="light" type="mail" placeholder="Correo electrónico" [(ngModel)]="login.username" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="light">Contraseña</ion-label>
+      <ion-input color="light" type="password" placeholder="Contraseña" [(ngModel)]="login.password" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-button color="light" slot="end" fill="clear">¿Olvidó su contraseña?</ion-button>
+    </ion-item>
+
+    <ion-button color="light" expand="block" shape="round" fill="outline" (click)="next()">Ingresar</ion-button>
+    <br>
+    <ion-button color="tertiary" expand="block" shape="round">Registrarse</ion-button>
+
+  </div>
+</ion-content>
