@@ -8,21 +8,21 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 
-import { MessageComponent } from './components/message/message.component';
 import { AuthenticationGuard  } from './services/auth/auth.guard';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MessageComponent
+    AppComponent
   ],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    ComponentsModule,
     HttpClientModule
   ],
   providers: [

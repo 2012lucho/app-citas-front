@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
 
 import { AuthService }     from '../../services/auth/auth.service';
 import { ProfileService }  from '../../services/profile.service';
@@ -11,15 +10,22 @@ import { ProfileService }  from '../../services/profile.service';
 })
 export class ProfilePage {
 
+  public expandable_items:any = {
+    cuenta:         { expanded:true },
+    notificaciones: { expanded:false },
+    invitar:        { expanded:false },
+    ayuda:          { expanded:false }
+  };
+
   constructor(
     private authService:    AuthService,
-    private profileService: ProfileService,
-    private router:         Router
+    private profileService: ProfileService
   ) {}
 
   ngOnInit(): void {
-    if ( !this.authService.logedIn() ){
-      this.router.navigate(['/']);
-    }
+  }
+
+  toggleExpanded( k:string ){
+    this.expandable_items[ k ].expanded = !this.expandable_items[ k ].expanded;
   }
 }
