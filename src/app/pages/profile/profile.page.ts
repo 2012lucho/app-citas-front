@@ -64,7 +64,7 @@ export class ProfilePage {
 
   setProfileData( params:any ){
     this.profile   = params;
-    this.user_name = this.authService.getUserName(); 
+    this.user_name = this.authService.getUserName();
   }
 
   toggleExpanded( k:string ){
@@ -73,6 +73,11 @@ export class ProfilePage {
 
   logOut(){
     this.authService.toLogOut();
+  }
+
+  public user_online:boolean = true;
+  userOnlineChange(){
+    this.authService.setOnlineStatus( this.user_online );
   }
 
   ngOnDestroy(){

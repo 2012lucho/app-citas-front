@@ -31,6 +31,10 @@
 
     <app-expandable [expanded]="expandable_items.cuenta.expanded">
       <ion-item>
+        <ion-label>Online</ion-label>
+        <ion-toggle [(ngModel)]="user_online" (click)="userOnlineChange()"></ion-toggle>
+      </ion-item>
+      <ion-item>
         <ion-label>Sesion</ion-label>
         <ion-button slot="end" (click)="logOut()">Salir</ion-button>
       </ion-item>

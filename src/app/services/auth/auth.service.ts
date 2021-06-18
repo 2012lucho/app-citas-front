@@ -101,6 +101,10 @@ export class AuthService {
     return Number( localStorage.getItem( this.confGral['appName']+'id' ) );
   }
 
+  setOnlineStatus( online:boolean ){
+
+  }
+
   setMenuLinks(){
 
   }
