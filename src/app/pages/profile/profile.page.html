@@ -7,6 +7,7 @@
 </ion-header>
 
 <ion-content class="bg">
+
   <ion-list lines="none">
     <ion-item>
       <ion-avatar slot="start" class="profile-image">
@@ -23,31 +24,59 @@
 
     <ion-item>
       <ion-icon slot="start" color="primary" name="key"></ion-icon>
-      <ion-label>
+      <ion-label (click)="toggleExpanded('cuenta')">
         <h2>Cuenta</h2>
       </ion-label>
     </ion-item>
+    <app-expandable [expanded]="expandable_items.cuenta.expanded">
+      <ion-item>
+            <p>
+              contenido interno
+            </p>
+      </ion-item>
+    </app-expandable>
 
     <ion-item>
       <ion-icon slot="start" color="primary" name="notifications"></ion-icon>
       <ion-label>
-        <h2>Notificaciones</h2>
+        <h2 (click)="toggleExpanded('notificaciones')">Notificaciones</h2>
       </ion-label>
     </ion-item>
+    <app-expandable [expanded]="expandable_items.notificaciones.expanded">
+      <ion-item>
+            <p>
+              contenido interno
+            </p>
+      </ion-item>
+    </app-expandable>
 
     <ion-item>
       <ion-icon slot="start" color="primary" name="people"></ion-icon>
       <ion-label>
-        <h2>Invitar Amigos</h2>
+        <h2 (click)="toggleExpanded('invitar')">Invitar Amigos</h2>
       </ion-label>
     </ion-item>
+    <app-expandable [expanded]="expandable_items.invitar.expanded">
+      <ion-item>
+            <p>
+              contenido interno
+            </p>
+      </ion-item>
+    </app-expandable>
 
-    <ion-item>
-      <ion-icon slot="start" color="primary" name="help"></ion-icon>
-      <ion-label>
+    <ion-item (click)="toggleExpanded('ayuda')">
+      <ion-icon slot="start" color="primary" name="help" ></ion-icon>
+      <ion-label >
         <h2>Ayuda</h2>
       </ion-label>
     </ion-item>
+    <app-expandable [expanded]="expandable_items.ayuda.expanded">
+      <ion-item>
+              <p>
+                contenido interno
+              </p>
+      </ion-item>
+    </app-expandable>
 
   </ion-list>
 

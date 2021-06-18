@@ -22,7 +22,7 @@
             <div class="row">
               <div class="col"></div>
               <div class="col-auto">
-                <button *ngFor="let btn of messageComponentService.dConfig.footerButtons" type="" class="btn {{btn.buttonsClass}}" (click)="btnClick(btn)">{{btn.text}}</button>
+                <button *ngFor="let btn of messageComponentService.dConfig.footerButtons" class="btn {{btn.buttonsClass}}" (click)="btnClick(btn)">{{btn.text}}</button>
               </div>
               <div class="col"></div>
             </div>
