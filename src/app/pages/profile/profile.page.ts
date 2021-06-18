@@ -28,4 +28,8 @@ export class ProfilePage {
   toggleExpanded( k:string ){
     this.expandable_items[ k ].expanded = !this.expandable_items[ k ].expanded;
   }
+
+  logOut(){
+    this.authService.toLogOut();
+  }
 }

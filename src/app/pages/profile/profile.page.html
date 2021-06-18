@@ -28,11 +28,11 @@
         <h2>Cuenta</h2>
       </ion-label>
     </ion-item>
+
     <app-expandable [expanded]="expandable_items.cuenta.expanded">
       <ion-item>
-            <p>
-              contenido interno
-            </p>
+        <ion-label>Sesion</ion-label>
+        <ion-button slot="end" (click)="logOut()">Salir</ion-button>
       </ion-item>
     </app-expandable>
 
