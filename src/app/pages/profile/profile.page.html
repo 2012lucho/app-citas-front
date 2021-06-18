@@ -11,11 +11,11 @@
   <ion-list lines="none">
     <ion-item>
       <ion-avatar slot="start" class="profile-image">
-        <img src="https://griffonagedotcom.files.wordpress.com/2016/07/profile-modern-2e.jpg">
+        <img src="{{profile.image_src}}">
       </ion-avatar>
       <ion-label>
-        <h2>Nombre</h2>
-        <p>Descripción</p>
+        <h2>{{user_name}}</h2>
+        <p>{{profile.description}}</p>
       </ion-label>
     </ion-item>
   </ion-list>
