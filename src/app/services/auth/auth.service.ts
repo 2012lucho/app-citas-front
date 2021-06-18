@@ -33,6 +33,7 @@ export class AuthService {
           if ( (data as any).status ){
             localStorage.setItem( this.confGral['appName']+'token',        (data as any).token );
             localStorage.setItem( this.confGral['appName']+'role',         (data as any).role );
+            localStorage.setItem( this.confGral['appName']+'id',           (data as any).id );
             localStorage.setItem( this.confGral['appName']+'enterprise_id', JSON.stringify( (data as any).enterprise_id ) );
             localStorage.setItem( this.confGral['appName']+'logedIn',      JSON.stringify( (data as any).status ) );
             localStorage.setItem( this.confGral['appName']+'userName',     JSON.stringify( (data as any).username ) );
@@ -47,6 +48,7 @@ export class AuthService {
           localStorage.setItem( this.confGral['appName']+'token',        JSON.stringify( '' ) );
           localStorage.setItem( this.confGral['appName']+'enterprise_id', JSON.stringify('' ) );
           localStorage.setItem( this.confGral['appName']+'role',         '' );
+          localStorage.setItem( this.confGral['appName']+'id',           JSON.stringify('' ) );
           localStorage.setItem( this.confGral['appName']+'userName',     JSON.stringify( '' ) );
           this.gral.showMessage( 'Ha ocurrido un error, por favor reintente más tarde.' );
         }
@@ -93,6 +95,14 @@ export class AuthService {
       return 'notassigned';
     }
     return localStorage.getItem( this.confGral['appName']+'role' );
+  }
+
+  getUserId(){
+    return Number( localStorage.getItem( this.confGral['appName']+'id' ) );
+  }
+
+  setOnlineStatus( online:boolean ){
+
   }
 
   setMenuLinks(){
