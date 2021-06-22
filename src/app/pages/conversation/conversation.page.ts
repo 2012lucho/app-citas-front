@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService }     from '../../services/auth/auth.service';
+import { MessageService }  from '../../services/message.service';
 
 @Component({
   selector: 'app-conversation',
@@ -11,7 +12,8 @@ export class ConversationPage implements OnInit {
 
   public contactInfo: any = {
     name: 'JOHN DOE',
-    status: 'ONLINE'
+    status: 'ONLINE',
+    img: 'https://ui-avatars.com/api/?name=John+Doe'
   }
   public showOptions: boolean = false;
   public messages: Array<any> = [
@@ -30,7 +32,8 @@ export class ConversationPage implements OnInit {
 
 
   constructor(
-    private authService: AuthService
+    private authService:     AuthService,
+    private messageService:  MessageService
   ) { }
 
   ngOnInit() {
