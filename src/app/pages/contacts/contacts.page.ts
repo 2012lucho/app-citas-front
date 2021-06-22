@@ -43,9 +43,15 @@ export class ContactsPage {
   private getMatchesByUserError:any = null;
   setRequestsSubscriptions(){
     //GET
-    this.getMatchesByUser = this.matchesService.getMatchesByUser.subscribe({  next: ( params: any ) => {
+    this.getMatchesByUser = this.matchesService.getMatchesByUser.subscribe({  next: ( response: any ) => {
         this.appUIUtilsService.dismissLoading();
-        console.log(2);
+        this.contactsList = [];
+        for (let c=0; c < response.items.length;c++){
+          let match:ContactInfo = new ContactInfo();
+          match.name   = response.items[c].userMatched.username;
+          match.online = response.items[c].userMatched.online;
+          this.contactsList.push( match );
+        }
     } });
 
     this.getMatchesByUserError = this.matchesService.getMatchesByUserError.subscribe({  next: ( params: any ) => {
