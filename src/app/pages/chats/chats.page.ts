@@ -15,12 +15,7 @@ import { ChatList } from './chat.list.model';
 })
 export class ChatsPage {
 
-  public chatList: Array<ChatList> = [
-    {
-      user: { name: 'John Doe', avatar: 'https://ui-avatars.com/api/?name=John+Doe' },
-      message: { snippet: 'See you later', created: '09:00 AM' }
-    }
-  ];
+  public chatList: Array<ChatList> = [];
 
   constructor(
     private navCtrl:           NavController,
@@ -53,7 +48,10 @@ export class ChatsPage {
         this.appUIUtilsService.dismissLoading();
         this.chatList = [];
         for (let c=0; c < response.items.length;c++){
+          console.log(response.items[c]);
           let chat:ChatList = new ChatList();
+          chat.user         = { name: response.items[c].userSender.username, avatar:response.items[c].userSender.profile.defaultProfileImage.path };
+          chat.message      = { snippet: '', created: '' }
           this.chatList.push( chat );
         }
     } });

@@ -57,7 +57,8 @@ export class ChatRoomService {
   public getChatRoomsByUser:Subject<any>      = new Subject();
   public getChatRoomsByUserError:Subject<any> = new Subject();
   getByUser( id:number ){
-    this.http.get( this.configData['apiBaseUrl'] + this.configData[ this.mainAction ]+'?filter[user_receiver_id]='+id,
+    let params:string = '?filter[user_receiver_id]='+id+'&expand=userReceiver,userSender.profile.defaultProfileImage';
+    this.http.get( this.configData['apiBaseUrl'] + this.configData[ this.mainAction ]+params,
       { headers: new HttpHeaders({ 'Content-Type':  'application/json', 'Authorization':'Bearer ' + this.authService.getToken() }) }).subscribe(
         data => {
             this.getChatRoomsByUser.next(data);
