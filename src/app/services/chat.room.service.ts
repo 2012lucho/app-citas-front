@@ -24,7 +24,7 @@ export class ChatRoomService {
   public getAllKO:Subject<any>           = new Subject();
 
   private LastElement:any = {};
-  private mainAction:string = 'genderAction';
+  private mainAction:string = 'chatRoomAction';
   getAll( params:any = ''){
     this.http.get( this.configData['apiBaseUrl'] + this.configData[ this.mainAction ] + '?' + params,
       { headers: new HttpHeaders({ 'Content-Type':  'application/json', 'Authorization':'Bearer ' + this.authService.getToken() }) }).subscribe(
@@ -53,6 +53,21 @@ export class ChatRoomService {
       );
   }
 
+
+  public getChatRoomsByUser:Subject<any>      = new Subject();
+  public getChatRoomsByUserError:Subject<any> = new Subject();
+  getByUser( id:number ){
+    let params:string = '?filter[user_receiver_id]='+id+'&expand=userReceiver,userSender.profile.defaultProfileImage';
+    this.http.get( this.configData['apiBaseUrl'] + this.configData[ this.mainAction ]+params,
+      { headers: new HttpHeaders({ 'Content-Type':  'application/json', 'Authorization':'Bearer ' + this.authService.getToken() }) }).subscribe(
+        data => {
+            this.getChatRoomsByUser.next(data);
+        },
+        err =>  {
+            this.getChatRoomsByUserError.next(err);
+        }
+      );
+  }
 
   public PostOK:Subject<any> = new Subject();
   public PostKO:Subject<any> = new Subject();
