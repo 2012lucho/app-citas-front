@@ -48,7 +48,6 @@ export class ChatsPage {
         this.appUIUtilsService.dismissLoading();
         this.chatList = [];
         for (let c=0; c < response.items.length;c++){
-          console.log(response.items[c]);
           let chat:ChatList = new ChatList();
           chat.user         = { name: response.items[c].userSender.username, avatar:response.items[c].userSender.profile.defaultProfileImage.path };
           chat.message      = { snippet: '', created: '' }
