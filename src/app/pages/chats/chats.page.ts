@@ -25,9 +25,9 @@ export class ChatsPage {
     private appUIUtilsService: AppUIUtilsService
   ) {}
 
-  private showConversationPage ()
+  private showConversationPage( id:number )
   {
-    this.navCtrl.navigateForward('conversation')
+    this.navCtrl.navigateForward([ 'conversation', { id:id }])
   }
 
   private activatedRouteSubject:any = null;
@@ -51,6 +51,7 @@ export class ChatsPage {
           let chat:ChatList = new ChatList();
           chat.user         = { name: response.items[c].userSender.username, avatar:response.items[c].userSender.profile.defaultProfileImage.path };
           chat.message      = { snippet: '', created: '' }
+          chat.id           = response.items[c].id;
           this.chatList.push( chat );
         }
     } });

@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit(): void {
     if ( this.auth.logedIn() ){
-      this.router.navigate(['/']);
+      this.router.navigate(['/tabs/tabs/chats']);
     }
   }
 
