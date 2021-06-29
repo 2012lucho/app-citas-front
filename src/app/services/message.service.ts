@@ -21,7 +21,7 @@ export class MessageService {
   private configData:any = {};
 
   public getAllOK:Subject<any>           = new Subject();
-  public getAllKO:Subject<any>           = new Subject();
+  public getAllError:Subject<any>           = new Subject();
 
   private LastElement:any = {};
   private mainAction:string = 'messageAction';
@@ -33,7 +33,7 @@ export class MessageService {
             this.getAllOK.next(data);
         },
         err =>  {
-            this.getAllKO.next(err);
+            this.getAllError.next(err);
         }
       );
   }
