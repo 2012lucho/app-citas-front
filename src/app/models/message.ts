@@ -3,4 +3,6 @@ export class Message {
   public chat_id:number        = -1;
   public user_sender_id:number = -1;
   public message:string        = '';
+  public type:string           = '';
+  public created:string        = '';
 }

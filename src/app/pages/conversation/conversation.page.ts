@@ -5,6 +5,8 @@ import { AppUIUtilsService } from '../../services/app.ui.utils.service';
 import { AuthService }       from '../../services/auth/auth.service';
 import { MessageService }    from '../../services/message.service';
 
+import { Message }    from '../../models/message';
+
 @Component({
   selector: 'app-conversation',
   templateUrl: './conversation.page.html',
@@ -18,20 +20,7 @@ export class ConversationPage implements OnInit {
     img: 'https://ui-avatars.com/api/?name=John+Doe'
   }
   public showOptions: boolean = false;
-  public messages: Array<any> = [
-    { text: "Hola, coma andas?", type: 'received', created: '14:02' },
-    { text: "Bien", type: 'send', created: '14:05' },
-    { text: "Te gustaría salir al cine hoy?", type: 'send', created: '14:05' },
-    { text: "Uhh, no hoy no puedo", type: 'received', created: '14:15' },
-    { text: "Pero mañana podría ser?", type: 'received', created: '14:16' },
-    { text: "borrado", type: 'received', created: '14:05' },
-    { text: "borrado", type: 'received', created: '14:05' },
-    { text: "borrado", type: 'received', created: '14:05' },
-    { text: "borrado", type: 'received', created: '14:05' },
-    { text: "Perdón mande esas fotos sin querer", type: 'received', created: '14:15' },
-    { text: "ahh, ok", type: 'send', created: '14:16' },
-  ];
-
+  public messages: Array<Message> = [];
 
   constructor(
     private authService:       AuthService,
@@ -41,11 +30,12 @@ export class ConversationPage implements OnInit {
   ) { }
 
   private activatedRouteSubject:any = null;
+  private userId:number             = -1;
   ngOnInit() {
     this.activatedRouteSubject = this.activatedRoute.params.subscribe((params: any) => {
         this.appUIUtilsService.presentLoading();
-        console.log(params);
-        this.messageService.getAll( 'filter[chat_id]=' );
+        this.userId = this.authService.getUserId();
+        this.messageService.getAll( 'filter[chat_id]='+params.id );
     });
 
     this.setRequestsSubscriptions();
@@ -54,7 +44,26 @@ export class ConversationPage implements OnInit {
   private getAllOK:any    = null;
   private getAllError:any = null;
   setRequestsSubscriptions(){
+    this.getAllOK = this.messageService.getAllOK.subscribe({  next: ( response: any ) => {
+        this.appUIUtilsService.dismissLoading();
+        this.messages = [];
+        for (let c=0; c < response.items.length;c++){
+          let msg:Message = new Message();
+          if (this.userId == response.items[c].user_sender_id){
+            msg.type = 'send';
+          } else {
+            msg.type = 'received';
+          }
+          msg.message      = response.items[c].message;
+          msg.id           = response.items[c].id;
+          this.messages.push( msg );
+        }
+    } });
 
+    this.getAllError = this.messageService.getAllError.subscribe({  next: ( params: any ) => {
+        this.appUIUtilsService.dismissLoading();
+        this.appUIUtilsService.showMessage('Ocurrió un error, reintente más tarde.');
+    } });
   }
 
   showOptionsToggle(value?: boolean) {
