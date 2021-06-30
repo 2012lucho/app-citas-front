@@ -6,7 +6,7 @@ import { AuthService }       from '../../services/auth/auth.service';
 import { MessageService }    from '../../services/message.service';
 
 import { Message }    from '../../models/message';
-
+import { ContactInfo } from '../../models/contact.info.model';
 @Component({
   selector: 'app-conversation',
   templateUrl: './conversation.page.html',
@@ -14,11 +14,7 @@ import { Message }    from '../../models/message';
 })
 export class ConversationPage implements OnInit {
 
-  public contactInfo: any = {
-    name: 'JOHN DOE',
-    status: 'ONLINE',
-    img: 'https://ui-avatars.com/api/?name=John+Doe'
-  }
+  public contactInfo: ContactInfo = new ContactInfo();
   public showOptions: boolean = false;
   public messages: Array<Message> = [];
 
@@ -34,8 +30,9 @@ export class ConversationPage implements OnInit {
   ngOnInit() {
     this.activatedRouteSubject = this.activatedRoute.params.subscribe((params: any) => {
         this.appUIUtilsService.presentLoading();
-        this.userId = this.authService.getUserId();
-        this.messageService.getAll( 'filter[chat_id]='+params.id );
+        this.userId      = this.authService.getUserId();
+        this.contactInfo = this.messageService.getContactInfo();
+        this.messageService.getAll( 'filter[chat_id]='+this.messageService.getChatId() );
     });
 
     this.setRequestsSubscriptions();

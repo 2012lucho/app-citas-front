@@ -6,6 +6,7 @@ import { ConfigService }          from './config.service';
 import { AuthService }            from './auth/auth.service';
 
 import { Message }  from '../models/message';
+import { ContactInfo } from '../models/contact.info.model';
 
 @Injectable({ providedIn: 'root' })
 export class MessageService {
@@ -16,6 +17,24 @@ export class MessageService {
     private authService:   AuthService
   ) {
     this.configData = this.configService.getConfigData();
+  }
+
+  private contactInfo:ContactInfo = new ContactInfo();
+  getContactInfo(){
+    return this.contactInfo;
+  }
+
+  setContactInfo( contactInfo:ContactInfo ){
+    this.contactInfo = contactInfo;
+  }
+
+  private chatId:number = -1;
+  setChatId( chatId:number ){
+    this.chatId = chatId;
+  }
+
+  getChatId(){
+    return this.chatId;
   }
 
   private configData:any = {};

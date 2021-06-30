@@ -4,9 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 
 import { AuthService }       from '../../services/auth/auth.service';
 import { ChatRoomService }   from '../../services/chat.room.service';
+import { MessageService }    from '../../services/message.service';
 import { AppUIUtilsService } from '../../services/app.ui.utils.service';
 
-import { ChatList } from './chat.list.model';
+import { ChatList }    from './chat.list.model';
+import { ContactInfo } from '../../models/contact.info.model';
 
 @Component({
   selector: 'app-chats',
@@ -22,12 +24,20 @@ export class ChatsPage {
     private authService:       AuthService,
     private chatRoomService:   ChatRoomService,
     private activatedRoute:    ActivatedRoute,
-    private appUIUtilsService: AppUIUtilsService
+    private appUIUtilsService: AppUIUtilsService,
+    private messageService:    MessageService
   ) {}
 
-  private showConversationPage( id:number )
+  private showConversationPage( chat:ChatList )
   {
-    this.navCtrl.navigateForward([ 'conversation', { id:id }])
+    let contact:ContactInfo = new ContactInfo();
+    contact.name   = chat.user.name;
+    contact.online = chat.user.online;
+    contact.id     = chat.user.id;
+    contact.avatar = chat.user.avatar;
+    this.messageService.setContactInfo( contact );
+    this.messageService.setChatId( chat.id );
+    this.navCtrl.navigateForward('conversation');
   }
 
   private activatedRouteSubject:any = null;
@@ -49,7 +59,12 @@ export class ChatsPage {
         this.chatList = [];
         for (let c=0; c < response.items.length;c++){
           let chat:ChatList = new ChatList();
-          chat.user         = { name: response.items[c].userSender.username, avatar:response.items[c].userSender.profile.defaultProfileImage.path };
+          chat.user = {
+            name:   response.items[c].userSender.username,
+            avatar: response.items[c].userSender.profile.defaultProfileImage.path,
+            online: response.items[c].userSender.online,
+            id:     response.items[c].userSender.id
+          };
           chat.message      = { snippet: '', created: '' }
           chat.id           = response.items[c].id;
           this.chatList.push( chat );
