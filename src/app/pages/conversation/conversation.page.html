@@ -4,12 +4,13 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-avatar slot="start" class="contact-avatar">
-      <img src="{{ contactInfo.img }}" />
+      <img src="{{ contactInfo.avatar }}" />
     </ion-avatar>
     <ion-title (tap)="showContactProfile()">
       <ion-label>
         <h2>{{ contactInfo.name }}</h2>
         <p><small class="text-muted">{{ contactInfo.status }}</small></p>
+        <ion-badge color="success" *ngIf="contactInfo.online == 1">Online</ion-badge>
       </ion-label>
     </ion-title>
   </ion-toolbar>

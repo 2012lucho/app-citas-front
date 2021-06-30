@@ -9,13 +9,14 @@
 <ion-content class="bg">
 
   <ion-list lines="none" class="app-list">
-    <ion-item *ngFor="let contact of contactsList" (click)="showConversationPage()">
+    <ion-item *ngFor="let contact of contactsList" (click)="showConversationPage( contact.id )">
       <ion-avatar slot="start">
         <img [src]="contact.avatar">
       </ion-avatar>
       <ion-label>
         <h2>{{ contact.name }}</h2>
         <p>{{ contact.status_msg }}</p>
+        <ion-badge color="success" *ngIf="contact.online == 1">Online</ion-badge>
       </ion-label>
     </ion-item>
   </ion-list>

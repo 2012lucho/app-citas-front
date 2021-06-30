@@ -41,7 +41,7 @@ export class MatchesService {
   public getMatchesByUser:Subject<any>       = new Subject();
   public getMatchesByUserError:Subject<any>  = new Subject();
   getByUser( id:number ){
-    this.http.get( this.configData['apiBaseUrl'] + this.configData[ this.mainAction ]+'?filter[user_matcher_id]='+id+'&expand=userMatched,userMatcher',
+    this.http.get( this.configData['apiBaseUrl'] + this.configData[ this.mainAction ]+'?filter[user_matcher_id]='+id+'&expand=userMatched,userMatcher,userMatched.profile.defaultProfileImage',
       { headers: new HttpHeaders({ 'Content-Type':  'application/json', 'Authorization':'Bearer ' + this.authService.getToken() }) }).subscribe(
         data => {
             this.getMatchesByUser.next(data);
