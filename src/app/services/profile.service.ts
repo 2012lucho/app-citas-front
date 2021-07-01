@@ -6,6 +6,7 @@ import { ConfigService }          from './config.service';
 import { AuthService }            from './auth/auth.service';
 
 import { Profile }  from '../models/profile';
+import { ContactInfo } from '../models/contact.info.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
@@ -16,6 +17,15 @@ export class ProfileService {
     private authService:   AuthService
   ) {
     this.configData = this.configService.getConfigData();
+  }
+
+  private contactInfo:ContactInfo = new ContactInfo();
+  getContactInfo(){
+    return this.contactInfo;
+  }
+
+  setContactInfo( contactInfo:ContactInfo ){
+    this.contactInfo = contactInfo;
   }
 
   private configData:any = {};
