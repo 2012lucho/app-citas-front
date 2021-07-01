@@ -28,7 +28,6 @@ export class UserDescriptionPage {
   ngOnInit(): void {
     this.activatedRouteSubject = this.activatedRoute.params.subscribe((params: any) => {
         this.contactInfo = this.profileService.getContactInfo();
-        console.log(this.contactInfo);
     });
 
     this.setRequestsSubscriptions();
