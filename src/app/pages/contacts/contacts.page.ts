@@ -78,6 +78,7 @@ export class ContactsPage {
         contact.online = response.items[0].userSender.online;
         contact.id     = response.items[0].userSender.id;
         contact.avatar = response.items[0].userSender.profile.defaultProfileImage.path;
+        contact.profile = response.items[0].userSender.profile;
         this.messageService.setContactInfo( contact );
         this.navCtrl.navigateForward('conversation');
     } });
