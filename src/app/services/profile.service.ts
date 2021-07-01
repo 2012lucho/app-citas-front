@@ -49,7 +49,7 @@ export class ProfileService {
   }
 
   public getOK:Subject<any>           = new Subject();
-  public getKO:Subject<any>           = new Subject();
+  public getError:Subject<any>           = new Subject();
   get( id:number ){
     this.http.get( this.configData['apiBaseUrl'] + this.configData[ this.mainAction ]+'/'+id,
       { headers: new HttpHeaders({ 'Content-Type':  'application/json', 'Authorization':'Bearer ' + this.authService.getToken() }) }).subscribe(
@@ -58,7 +58,7 @@ export class ProfileService {
             this.getOK.next(data);
         },
         err =>  {
-            this.getKO.next(err);
+            this.getError.next(err);
         }
       );
   }
