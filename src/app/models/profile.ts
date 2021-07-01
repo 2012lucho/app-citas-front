@@ -7,9 +7,9 @@ export class Profile {
   public description:string              = '';
   public email:string                    = '';
   public gender_id:number                = -1;
-  public gender_string:string            = '';
+  public gender:any                      = { id:-1, type:'' };
   public gender_preference_id:number     = -1;
-  public gender_preference_string:string = '';
+  public genderPreference:any            = { id:-1, type:'' };
   public image_src:string                = '';
   public profile_images:Array<ProfileImage> = [];
 }
