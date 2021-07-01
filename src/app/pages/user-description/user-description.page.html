@@ -4,11 +4,26 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Perfil
+      {{contactInfo.name}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="bg">
-  <app-gallery></app-gallery>
+  <ion-list lines="none">
+    <ion-item>
+      <app-gallery></app-gallery>
+    </ion-item>
+    <ion-item>
+      {{contactInfo.profile.description}}
+    </ion-item>
+    <ion-item>
+      {{contactInfo.profile.birth_date_string}}
+    </ion-item>
+    <ion-item>
+      {{contactInfo.profile.gender_string}}
+    </ion-item>
+    <ion-item>
+      {{contactInfo.profile.gender_preference_string}}
+    </ion-item>
 </ion-content>

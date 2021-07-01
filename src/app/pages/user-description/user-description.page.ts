@@ -6,6 +6,7 @@ import { ProfileService }    from '../../services/profile.service';
 import { AppUIUtilsService } from '../../services/app.ui.utils.service';
 
 import { Profile } from '../../models/profile';
+import { ContactInfo } from '../../models/contact.info.model';
 
 @Component({
   selector: 'app-user-description',
@@ -13,6 +14,8 @@ import { Profile } from '../../models/profile';
   styleUrls: ['user-description.page.scss']
 })
 export class UserDescriptionPage {
+
+  public contactInfo:ContactInfo = new ContactInfo();
 
   constructor(
     private authService:       AuthService,
@@ -24,8 +27,8 @@ export class UserDescriptionPage {
   private activatedRouteSubject:any = null;
   ngOnInit(): void {
     this.activatedRouteSubject = this.activatedRoute.params.subscribe((params: any) => {
-        this.appUIUtilsService.presentLoading();
-        this.profileService.get( this.authService.getUserId() );
+        this.contactInfo = this.profileService.getContactInfo();
+        console.log(this.contactInfo);
     });
 
     this.setRequestsSubscriptions();
