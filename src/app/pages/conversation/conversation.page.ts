@@ -32,12 +32,20 @@ export class ConversationPage implements OnInit {
 
   private activatedRouteSubject:any = null;
   private userId:number             = -1;
+  private intervalUpdate:any = null;
+  private intervalUpdateTime:number = 1000;
   ngOnInit() {
     this.activatedRouteSubject = this.activatedRoute.params.subscribe((params: any) => {
         this.appUIUtilsService.presentLoading();
         this.userId      = this.authService.getUserId();
         this.contactInfo = this.messageService.getContactInfo();
-        this.messageService.getAll( 'filter[chat_id]='+this.messageService.getChatId() );
+
+        this.intervalUpdate = setInterval( ()=>{
+          if ( this.messageService.getChatId() != -1){
+            this.messageService.getAll( 'filter[chat_id]='+this.messageService.getChatId() );
+          }
+        } , this.intervalUpdateTime);
+        this.getDataFDashboard();
     });
 
     this.setRequestsSubscriptions();
@@ -105,6 +113,7 @@ export class ConversationPage implements OnInit {
   ngOnDestroy(){
     this.activatedRouteSubject.unsubscribe();
     this.unSetRequestsSubscriptions();
+    clearInterval( this.intervalUpdate );
   }
 
   sendMessage(){
