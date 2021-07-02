@@ -1,1 +1,24 @@
-galleryOK
+<ion-grid>
+  <ion-row *ngIf="imageData.length != 0">
+    <ion-col>
+
+      <ion-slides pager="true" [options]="slideOpts" >
+          <ion-slide *ngFor="let image of imageData">
+            <ion-img [src]="image.path"></ion-img>
+          </ion-slide>
+      </ion-slides>
+
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="imageData.length == 0">
+    <ion-col>
+
+      <ion-avatar>
+        <img src="/assets/imgs/icon-profile.png">
+      </ion-avatar>
+
+    </ion-col>
+  </ion-row>
+
+</ion-grid>

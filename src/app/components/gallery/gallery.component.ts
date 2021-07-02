@@ -1,15 +1,22 @@
-import { Component, AfterViewInit, Input, ViewChild,  ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+
+import { ImageDataModel } from './image.data.model';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss'],
 })
-export class GalleryComponent implements AfterViewInit {
+export class GalleryComponent implements OnInit {
+  @Input() imageData: Array<ImageDataModel> = [];
+
+  public slideOpts:any = {
+    initialSlide: 1,
+    speed: 400
+  };
 
   constructor() {}
 
-  ngAfterViewInit() {
-
+  ngOnInit(): void {
   }
 }
