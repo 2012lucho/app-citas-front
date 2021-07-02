@@ -6,7 +6,7 @@
     <ion-avatar slot="start" class="contact-avatar">
       <img src="{{ contactInfo.avatar }}" />
     </ion-avatar>
-    <ion-title (tap)="showContactProfile()">
+    <ion-title (click)="showContactProfile( contactInfo )">
       <ion-label>
         <h2>{{ contactInfo.name }}</h2>
         <p><small class="text-muted">{{ contactInfo.status }}</small></p>

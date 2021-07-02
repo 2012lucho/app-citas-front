@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      {{contactInfo.name}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg">
+  <ion-list lines="none">
+    <ion-item>
+      <app-gallery></app-gallery>
+    </ion-item>
+    <ion-item>
+      <ion-label>Presentación:</ion-label>
+      {{contactInfo.profile.description}}
+    </ion-item>
+    <ion-item>
+      <ion-label>Nací el:</ion-label>
+      {{contactInfo.profile.birth_date_string}}
+    </ion-item>
+    <ion-item>
+      <ion-label>Soy:</ion-label>
+      {{contactInfo.profile.gender.type}}
+    </ion-item>
+    <ion-item>
+      <ion-label>Me gustaría conocer:</ion-label>
+      {{contactInfo.profile.genderPreference.type}}
+    </ion-item>
+  </ion-list>
+</ion-content>

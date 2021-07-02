@@ -5,11 +5,13 @@ import { CommonModule } from '@angular/common';
 
 import { ExpandableComponent } from './expandable/expandable.component';
 import { MessageComponent }    from './message/message.component';
+import { GalleryComponent }    from './gallery/gallery.component';
 
 @NgModule({
 	declarations: [
 		ExpandableComponent,
-		MessageComponent
+		MessageComponent,
+		GalleryComponent
 	],
 	imports: [
 		IonicModule,
@@ -17,7 +19,8 @@ import { MessageComponent }    from './message/message.component';
 	],
 	exports: [
 		ExpandableComponent,
-		MessageComponent
+		MessageComponent,
+		GalleryComponent
 	]
 })
 export class ComponentsModule {}

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NavController }  from '@ionic/angular';
 
 import { AppUIUtilsService } from '../../services/app.ui.utils.service';
 import { AuthService }       from '../../services/auth/auth.service';
 import { MessageService }    from '../../services/message.service';
+import { ProfileService }    from '../../services/profile.service';
 
 import { Message }    from '../../models/message';
 import { ContactInfo } from '../../models/contact.info.model';
@@ -22,7 +24,9 @@ export class ConversationPage implements OnInit {
     private authService:       AuthService,
     private messageService:    MessageService,
     private appUIUtilsService: AppUIUtilsService,
-    private activatedRoute:    ActivatedRoute
+    private activatedRoute:    ActivatedRoute,
+    private navController:     NavController,
+    private profileService:    ProfileService
   ) { }
 
   private activatedRouteSubject:any = null;
@@ -71,8 +75,9 @@ export class ConversationPage implements OnInit {
     this.showOptions = !this.showOptions;
   }
 
-  showContactProfile(){
-
+  showContactProfile( contactInfo:ContactInfo ){
+    this.profileService.setContactInfo( contactInfo );
+    this.navController.navigateForward('tabs/tabs/user-description');
   }
 
   unSetRequestsSubscriptions(){

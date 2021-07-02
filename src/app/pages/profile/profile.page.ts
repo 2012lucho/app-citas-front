@@ -51,7 +51,7 @@ export class ProfilePage {
         this.setProfileData(params);
     } });
 
-    this.getProfileError = this.profileService.getKO.subscribe({  next: ( params: any ) => {
+    this.getProfileError = this.profileService.getError.subscribe({  next: ( params: any ) => {
         this.appUIUtilsService.dismissLoading();
         this.appUIUtilsService.showMessage('Ocurrió un error, reintente más tarde.');
     } });

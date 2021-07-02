@@ -35,6 +35,7 @@ export class ChatsPage {
     contact.online = chat.user.online;
     contact.id     = chat.user.id;
     contact.avatar = chat.user.avatar;
+    contact.profile = chat.user.profile;
     this.messageService.setContactInfo( contact );
     this.messageService.setChatId( chat.id );
     this.navCtrl.navigateForward('conversation');
@@ -63,7 +64,8 @@ export class ChatsPage {
             name:   response.items[c].userSender.username,
             avatar: response.items[c].userSender.profile.defaultProfileImage.path,
             online: response.items[c].userSender.online,
-            id:     response.items[c].userSender.id
+            id:     response.items[c].userSender.id,
+            profile:response.items[c].userSender.profile,
           };
           chat.message      = { snippet: '', created: '' }
           chat.id           = response.items[c].id;

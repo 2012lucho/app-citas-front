@@ -44,6 +44,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'user-description',
+        children: [
+          {
+            path: '',
+            loadChildren: '../user-description/user-description.module#UserDescriptionPageModule'
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: 'chats',
         pathMatch: 'full'
