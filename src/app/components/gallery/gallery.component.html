@@ -2,7 +2,14 @@
   <ion-row *ngIf="imageData.length != 0">
     <ion-col>
 
-      <ion-slides pager="true" [options]="slideOpts" >
+      <ion-badge>
+        <ion-row>
+          <ion-col><ion-icon name="camera-sharp"></ion-icon></ion-col>
+          <ion-col><span>{{actualIndex}}/{{imageData.length}}</span></ion-col>
+        </ion-row>
+      </ion-badge>
+
+      <ion-slides #slides pager="true" [options]="slideOpts" (ionSlideDidChange)="onSlideChanged( slides )">
           <ion-slide *ngFor="let image of imageData">
             <ion-img [src]="image.path"></ion-img>
           </ion-slide>
@@ -13,6 +20,13 @@
 
   <ion-row *ngIf="imageData.length == 0">
     <ion-col>
+
+      <ion-badge>
+        <ion-row>
+          <ion-col><ion-icon name="camera-sharp"></ion-icon></ion-col>
+          <ion-col><span>0/0</span></ion-col>
+        </ion-row>
+      </ion-badge>
 
       <ion-avatar>
         <img src="/assets/imgs/icon-profile.png">
