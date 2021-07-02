@@ -11,5 +11,5 @@ export class Profile {
   public gender_preference_id:number     = -1;
   public genderPreference:any            = { id:-1, type:'' };
   public image_src:string                = '';
-  public profile_images:Array<ProfileImage> = [];
+  public profileImages:Array<ProfileImage> = [];
 }
