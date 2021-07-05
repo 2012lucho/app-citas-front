@@ -7,11 +7,16 @@ import { AuthService }            from './auth/auth.service';
 
 import { Profile }  from '../models/profile';
 import { ContactInfo } from '../models/contact.info.model';
+import { Router } from '@angular/router';
+
+
+
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
 
   constructor(
+    private router: Router,
     private configService: ConfigService,
     private http:          HttpClient,
     private authService:   AuthService
@@ -77,6 +82,12 @@ export class ProfileService {
             this.PostKO.next(err);
         }
       );
+  }
+
+  public goToEditSubj:Subject<any> = new Subject();
+  goToEdit(model : Profile){
+    this.router.navigate( [ '/profile-edit' ] );
+    this.goToEditSubj.next( model );
   }
 
   public PutOK:Subject<any> = new Subject();
