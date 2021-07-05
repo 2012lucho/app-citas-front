@@ -45,7 +45,6 @@ export class ConversationPage implements OnInit {
             this.messageService.getAll( 'filter[chat_id]='+this.messageService.getChatId() );
           }
         } , this.intervalUpdateTime);
-        this.getDataFDashboard();
     });
 
     this.setRequestsSubscriptions();
