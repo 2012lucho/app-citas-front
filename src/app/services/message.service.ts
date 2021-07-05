@@ -74,7 +74,7 @@ export class MessageService {
 
 
   public PostOK:Subject<any> = new Subject();
-  public PostKO:Subject<any> = new Subject();
+  public PostError:Subject<any> = new Subject();
   post( model:Message ){
     this.http.post( this.configData['apiBaseUrl'] + this.configData[ this.mainAction ], model,
       { headers: new HttpHeaders({ 'Content-Type':  'application/json', 'Authorization':'Bearer ' + this.authService.getToken() }) }).subscribe(
@@ -83,7 +83,7 @@ export class MessageService {
             this.PostOK.next(data);
         },
         err =>  {
-            this.PostKO.next(err);
+            this.PostError.next(err);
         }
       );
   }
