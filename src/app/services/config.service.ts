@@ -16,6 +16,7 @@ export class ConfigService {
       matchesAction:"matches",
       profileAction:"profiles",
       profileImageAction:"profileImages",
+      userAction:"users",
       appName: "app_citas_dev_"
     };
   }
