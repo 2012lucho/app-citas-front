@@ -84,6 +84,38 @@ export class UserService {
       );
   }
 
+  public onlineStatusChangeOK:Subject<any> = new Subject();
+  public onlineStatusChangeError:Subject<any> = new Subject();
+  setOnlineStatus( online:any ){
+    if (online){
+      online = 1;
+    } else {
+      online = 0;
+    }
+    let userPutOk:any = this.PutOK.subscribe({  next: ( params: any ) => {
+          this.authService.setOnlineStatus( online );
+          userPutOk.unsubscribe();
+          this.onlineStatusChangeOK.next(params);
+          return true;
+    } });
+    let userPutError:any = this.PutError.subscribe({  next: ( params: any ) => {
+          userPutError.unsubscribe();
+          this.onlineStatusChangeError.next(params);
+          return false;
+    } });
+    let model:any = {
+      id:       this.authService.getUserId(),
+      online:   online,
+      state_id: 1,
+      role_id:  this.authService.getRoleId()
+    };
+    this.put( model );
+  }
+
+  getOnlineStatus(){
+    return this.authService.getOnlineStatus();
+  }
+
   public deleteOK:Subject<any> = new Subject();
   public deleteError:Subject<any> = new Subject();
   delete( id:number ){

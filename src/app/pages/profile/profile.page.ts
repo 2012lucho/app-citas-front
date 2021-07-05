@@ -4,6 +4,7 @@ import { ActivatedRoute }    from '@angular/router';
 import { AuthService }       from '../../services/auth/auth.service';
 import { ProfileService }    from '../../services/profile.service';
 import { AppUIUtilsService } from '../../services/app.ui.utils.service';
+import { UserService }       from '../../services/user.service';
 
 import { Profile } from '../../models/profile';
 
@@ -31,7 +32,8 @@ export class ProfilePage {
     private authService:       AuthService,
     private profileService:    ProfileService,
     private activatedRoute:    ActivatedRoute,
-    private appUIUtilsService: AppUIUtilsService
+    private appUIUtilsService: AppUIUtilsService,
+    private userService:       UserService
   ) {}
 
   private activatedRouteSubject:any = null;
@@ -45,6 +47,7 @@ export class ProfilePage {
   }
 
   setRequestsSubscriptions(){
+    ////  PROFILE
     //GET
     this.getProfile = this.profileService.getOK.subscribe({  next: ( params: any ) => {
         this.appUIUtilsService.dismissLoading();
@@ -52,6 +55,16 @@ export class ProfilePage {
     } });
 
     this.getProfileError = this.profileService.getError.subscribe({  next: ( params: any ) => {
+        this.appUIUtilsService.dismissLoading();
+        this.appUIUtilsService.showMessage('Ocurrió un error, reintente más tarde.');
+    } });
+
+    //// USER
+    this.onlineStatusChangeOK = this.userService.onlineStatusChangeOK.subscribe({  next: ( params: any ) => {
+        this.appUIUtilsService.dismissLoading();
+    } });
+
+    this.onlineStatusChangeError = this.userService.onlineStatusChangeError.subscribe({  next: ( params: any ) => {
         this.appUIUtilsService.dismissLoading();
         this.appUIUtilsService.showMessage('Ocurrió un error, reintente más tarde.');
     } });
@@ -76,12 +89,16 @@ export class ProfilePage {
   }
 
   public user_online:boolean = true;
+  private onlineStatusChangeOK:any    = null;
+  private onlineStatusChangeError:any = null;
   userOnlineChange(){
-    this.authService.setOnlineStatus( this.user_online );
+    this.userService.setOnlineStatus( !this.user_online );
   }
 
   ngOnDestroy(){
     this.activatedRouteSubject.unsubscribe();
+    this.onlineStatusChangeOK.unsubscribe();
+    this.onlineStatusChangeError.unsubscribe();
     this.unSetRequestsSubscriptions();
   }
 }
