@@ -3,7 +3,7 @@ import { ProfileImage } from './profile.image';
 export class Profile {
   public id:number                       = -1;
   public birth_date:any                  = null;
-  public birth_string:string             = '';
+  public birth_date_string:string        = '';
   public description:string              = '';
   public email:string                    = '';
   public gender_id:number                = -1;
