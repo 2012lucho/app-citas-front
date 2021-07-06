@@ -12,7 +12,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../chats/chats.module#ChatsPageModule'
+            loadChildren: () => import('../chats/chats.module').then(m => m.ChatsPageModule)
           }
         ]
       },
@@ -21,7 +21,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../contacts/contacts.module#ContactsPageModule'
+            loadChildren: () => import('../contacts/contacts.module').then(m => m.ContactsPageModule)
           }
         ]
       },
@@ -30,7 +30,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../profile/profile.module#ProfilePageModule'
+            loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
           }
         ]
       },
@@ -39,7 +39,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../search/search.module#SearchPageModule'
+            loadChildren: () => import('../search/search.module').then(m => m.SearchPageModule)
           }
         ]
       },
@@ -48,7 +48,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../user-description/user-description.module#UserDescriptionPageModule'
+            loadChildren: () => import('../user-description/user-description.module').then(m => m.UserDescriptionPageModule)
           }
         ]
       },
