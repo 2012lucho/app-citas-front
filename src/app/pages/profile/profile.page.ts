@@ -84,4 +84,9 @@ export class ProfilePage {
     this.activatedRouteSubject.unsubscribe();
     this.unSetRequestsSubscriptions();
   }
+
+  edit(){
+    this.profileService.goToEdit(this.profile);
+  }
+
 }

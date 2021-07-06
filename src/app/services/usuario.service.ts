@@ -298,7 +298,6 @@ export class UsuarioService {
   public changePasswordError:Subject<any> = new Subject();
   changePassword( model:ChangePassword ){
     if(this.authService.logedIn){
-      console.log(this.authService.getUserId());
       this.http.put(this.configData['apiBaseUrl'] + this.configData['changePasswordAction']+'/'+this.authService.getUserId(), model,
       { headers: new HttpHeaders({ 'Content-Type':  'application/json', 'Authorization':'Bearer ' + this.authService.getToken() }) }).subscribe(
         data => {
