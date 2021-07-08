@@ -101,4 +101,9 @@ export class ProfilePage {
     this.onlineStatusChangeError.unsubscribe();
     this.unSetRequestsSubscriptions();
   }
+
+  edit(){
+    this.profileService.goToEdit(this.profile);
+  }
+
 }
