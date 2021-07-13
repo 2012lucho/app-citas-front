@@ -6,16 +6,31 @@ import { ConfigService }          from './config.service';
 import { AuthService }            from './auth/auth.service';
 
 import { Profile }  from '../models/profile';
+import { ContactInfo } from '../models/contact.info.model';
+import { Router } from '@angular/router';
+
+
+
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
 
   constructor(
+    private router: Router,
     private configService: ConfigService,
     private http:          HttpClient,
     private authService:   AuthService
   ) {
     this.configData = this.configService.getConfigData();
+  }
+
+  private contactInfo:ContactInfo = new ContactInfo();
+  getContactInfo(){
+    return this.contactInfo;
+  }
+
+  setContactInfo( contactInfo:ContactInfo ){
+    this.contactInfo = contactInfo;
   }
 
   private configData:any = {};
@@ -39,7 +54,7 @@ export class ProfileService {
   }
 
   public getOK:Subject<any>           = new Subject();
-  public getKO:Subject<any>           = new Subject();
+  public getError:Subject<any>           = new Subject();
   get( id:number ){
     this.http.get( this.configData['apiBaseUrl'] + this.configData[ this.mainAction ]+'/'+id,
       { headers: new HttpHeaders({ 'Content-Type':  'application/json', 'Authorization':'Bearer ' + this.authService.getToken() }) }).subscribe(
@@ -48,7 +63,7 @@ export class ProfileService {
             this.getOK.next(data);
         },
         err =>  {
-            this.getKO.next(err);
+            this.getError.next(err);
         }
       );
   }
@@ -67,6 +82,12 @@ export class ProfileService {
             this.PostKO.next(err);
         }
       );
+  }
+
+  public goToEditSubj:Subject<any> = new Subject();
+  goToEdit(model : Profile){
+    this.router.navigate( [ '/profile-edit' ] );
+    this.goToEditSubj.next( model );
   }
 
   public PutOK:Subject<any> = new Subject();

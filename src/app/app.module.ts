@@ -8,23 +8,25 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 
-import { MessageComponent } from './components/message/message.component';
-import { ExpandableComponent } from './components/expandable/expandable.component';
 import { AuthenticationGuard  } from './services/auth/auth.guard';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MessageComponent, ExpandableComponent
+    AppComponent
   ],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    ComponentsModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     StatusBar,

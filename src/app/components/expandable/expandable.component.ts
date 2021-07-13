@@ -6,8 +6,8 @@ import { Component, AfterViewInit, Input, ViewChild,  ElementRef, Renderer2 } fr
   styleUrls: ['./expandable.component.scss'],
 })
 export class ExpandableComponent implements AfterViewInit {
-  @ViewChild("expandWrapper", { read: typeof ElementRef, static: true }) expandWrapper: ElementRef;
-  @Input() expanded: boolean    = false;
+  @ViewChild('expandWrapper', {read: ElementRef, static:false}) expandWrapper;
+  @Input() expanded: boolean = false;
   @Input() expandHeight: string = "150px";
 
   constructor(public renderer: Renderer2) {}

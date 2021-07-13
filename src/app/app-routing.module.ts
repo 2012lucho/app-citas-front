@@ -5,11 +5,12 @@ import { AuthenticationGuard  } from './services/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'tabs', loadChildren: './pages/tabs/tabs.module#TabsPageModule', canActivate: [AuthenticationGuard] },
-  { path: 'signup', loadChildren: './pages/signup/signup.module#SignupPageModule', canActivate: [AuthenticationGuard] },
-  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
-  { path: 'enter-code', loadChildren: './pages/enter-code/enter-code.module#EnterCodePageModule', canActivate: [AuthenticationGuard] },
-  { path: 'conversation', loadChildren: './pages/conversation/conversation.module#ConversationPageModule', canActivate: [AuthenticationGuard] }
+  { path: 'tabs', loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule), canActivate: [AuthenticationGuard] },
+  { path: 'signup', loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupPageModule), canActivate: [AuthenticationGuard] },
+  { path: 'profile-edit', loadChildren: () => import('./pages/profile/profile-edit/profile-edit.module').then(m => m.ProfileEditModule), canActivate: [AuthenticationGuard] },
+  { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule) },
+  { path: 'enter-code', loadChildren: () => import('./pages/enter-code/enter-code.module').then(m => m.EnterCodePageModule), canActivate: [AuthenticationGuard] },
+  { path: 'conversation', loadChildren: () => import('./pages/conversation/conversation.module').then(m => m.ConversationPageModule), canActivate: [AuthenticationGuard] }
 ];
 @NgModule({
   imports: [

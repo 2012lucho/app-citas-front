@@ -6,6 +6,7 @@ import { ConfigService }          from './config.service';
 import { AuthService }            from './auth/auth.service';
 
 import { Message }  from '../models/message';
+import { ContactInfo } from '../models/contact.info.model';
 
 @Injectable({ providedIn: 'root' })
 export class MessageService {
@@ -18,10 +19,28 @@ export class MessageService {
     this.configData = this.configService.getConfigData();
   }
 
+  private contactInfo:ContactInfo = new ContactInfo();
+  getContactInfo(){
+    return this.contactInfo;
+  }
+
+  setContactInfo( contactInfo:ContactInfo ){
+    this.contactInfo = contactInfo;
+  }
+
+  private chatId:number = -1;
+  setChatId( chatId:number ){
+    this.chatId = chatId;
+  }
+
+  getChatId(){
+    return this.chatId;
+  }
+
   private configData:any = {};
 
   public getAllOK:Subject<any>           = new Subject();
-  public getAllKO:Subject<any>           = new Subject();
+  public getAllError:Subject<any>           = new Subject();
 
   private LastElement:any = {};
   private mainAction:string = 'messageAction';
@@ -33,7 +52,7 @@ export class MessageService {
             this.getAllOK.next(data);
         },
         err =>  {
-            this.getAllKO.next(err);
+            this.getAllError.next(err);
         }
       );
   }
@@ -55,7 +74,7 @@ export class MessageService {
 
 
   public PostOK:Subject<any> = new Subject();
-  public PostKO:Subject<any> = new Subject();
+  public PostError:Subject<any> = new Subject();
   post( model:Message ){
     this.http.post( this.configData['apiBaseUrl'] + this.configData[ this.mainAction ], model,
       { headers: new HttpHeaders({ 'Content-Type':  'application/json', 'Authorization':'Bearer ' + this.authService.getToken() }) }).subscribe(
@@ -64,7 +83,7 @@ export class MessageService {
             this.PostOK.next(data);
         },
         err =>  {
-            this.PostKO.next(err);
+            this.PostError.next(err);
         }
       );
   }
