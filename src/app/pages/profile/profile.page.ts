@@ -85,6 +85,7 @@ export class ProfilePage {
   }
 
   logOut(){
+    this.userService.setOnlineStatus( false );
     this.authService.toLogOut();
   }
 
