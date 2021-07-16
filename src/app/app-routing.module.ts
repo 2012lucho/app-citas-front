@@ -10,7 +10,13 @@ const routes: Routes = [
   { path: 'profile-edit', loadChildren: () => import('./pages/profile/profile-edit/profile-edit.module').then(m => m.ProfileEditModule), canActivate: [AuthenticationGuard] },
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule) },
   { path: 'enter-code', loadChildren: () => import('./pages/enter-code/enter-code.module').then(m => m.EnterCodePageModule), canActivate: [AuthenticationGuard] },
-  { path: 'conversation', loadChildren: () => import('./pages/conversation/conversation.module').then(m => m.ConversationPageModule), canActivate: [AuthenticationGuard] }
+  { path: 'conversation', loadChildren: () => import('./pages/conversation/conversation.module').then(m => m.ConversationPageModule), canActivate: [AuthenticationGuard] },
+  { path: 'change-password', loadChildren: () => import('./pages/profile/change-password/change-password.module').then(m => m.ChangePasswordModule), canActivate: [AuthenticationGuard] },
+  { path: 'profile-edit', loadChildren: () => import('./pages/profile/profile-edit/profile-edit.module').then(m => m.ProfileEditModule), canActivate: [AuthenticationGuard] },
+  { path: 'reset-password', loadChildren: () => import( './pages/login/reset-password/reset-password.module').then(m => m.ResetPasswordModule) },
+  { path: 'register', loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule) },
+  { path: 'reset-password-token', loadChildren: () => import('./pages/login/reset-password-form/reset-password-form.module').then(m => m.ResetPasswordFormModule) }
+
 ];
 @NgModule({
   imports: [
