@@ -7,6 +7,8 @@ import { ConfigService } from './config.service';
 import { AppUIUtilsService } from './app.ui.utils.service';
 import { AuthService }     from './auth/auth.service';
 import { ChangePassword } from '../models/change-password';
+import { ResetPasswordForm } from '../models/reset-password-form';
+import { ResetPassword } from '../models/reset-password';
 
 @Injectable({ providedIn: 'root' })
 export class UsuarioService {
@@ -222,7 +224,13 @@ export class UsuarioService {
   public goToProfileSubj:Subject<any> = new Subject();
   goToProfile(){
     this.router.navigate( [ '/tabs/tabs/profile' ] );
-    this.goToAdminSubj.next(true);
+    this.goToProfileSubj.next(true);
+  }
+
+  public goToLoginSubj:Subject<any> = new Subject();
+  goToLogin(){
+    this.router.navigate( [ '/login' ] );
+    this.goToLoginSubj.next(true);
   }
 
   public goToBaneoSubj:Subject<any> = new Subject();
@@ -309,6 +317,21 @@ export class UsuarioService {
         }
       );
     }
+  }
+
+  public resetPasswordOK:Subject<any> = new Subject();
+  public resetPasswordError:Subject<any> = new Subject();
+  resetPassword( model:ResetPasswordForm, token: String ){
+    this.http.put(this.configData['apiBaseUrl'] + this.configData['resetPasswordAction']+'/'+token, model,
+    { headers: new HttpHeaders({ 'Content-Type':  'application/json'}) }).subscribe(
+        data => {
+          this.LastElement = data;
+          this.resetPasswordOK.next(data);
+        },
+        err =>  {
+          this.resetPasswordError.next(err);
+        }
+      );
   }
 
 }
