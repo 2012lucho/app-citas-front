@@ -74,7 +74,6 @@ export class ProfileEditComponent implements OnInit {
   }
 
  initValuesForm(model: Profile){
-  console.log(this.profile);
   this.profileForm.patchValue({
     email: model.email,
     birth_date: model.birth_date,

@@ -18,6 +18,8 @@ export class ConfigService {
       profileImageAction:"profileImages",
       changePasswordAction:"change-password",
       userAction:"users",
+      resetPasswordEmailAction:"password-reset",
+      resetPasswordAction:"change-password-token",
       appName: "app_citas_dev_"
     };
   }

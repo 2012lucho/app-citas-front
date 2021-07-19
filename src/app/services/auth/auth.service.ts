@@ -6,6 +6,8 @@ import { Login }  from '../../models/login';
 
 import { ConfigService }   from '../config.service';
 import { AppUIUtilsService }   from '../app.ui.utils.service';
+import { ResetPassword } from 'src/app/models/reset-password';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,7 @@ import { AppUIUtilsService }   from '../app.ui.utils.service';
 export class AuthService {
 
   private confGral:any = {};
+  private LastElement:any = {};
 
   constructor(
     private  router:      Router,
@@ -122,5 +125,20 @@ export class AuthService {
 
   setMenuLinks(){
 
+  }
+
+  public resetPasswordEmailOK:Subject<any> = new Subject();
+  public resetPasswordEmailError:Subject<any> = new Subject();
+  resetPasswordEmail( model:ResetPassword ){
+    this.http.post(this.confGral['apiBaseUrl'] + this.confGral['resetPasswordEmailAction'], model,
+      { headers: new HttpHeaders({ 'Content-Type':  'application/json'}) }).subscribe(
+        data => {
+          this.LastElement = data;
+          this.resetPasswordEmailOK.next(data);
+        },
+        err =>  {
+          this.resetPasswordEmailError.next(err);
+        }
+      );
   }
 }
