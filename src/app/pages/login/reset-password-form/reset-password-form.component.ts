@@ -37,6 +37,8 @@ export class ResetPasswordFormComponent implements OnInit {
     this.urlTree = this.router.parseUrl(this.router.url);
 
     this.token = this.urlTree.queryParams['token'];
+
+    this.resetPass.token = this.token;
    }
 
   ngOnInit() {
@@ -55,7 +57,7 @@ export class ResetPasswordFormComponent implements OnInit {
 
   next(){
     if(this.resetPassForm.valid){
-      this.user.resetPassword( this.resetPass, this.token);
+      this.user.resetPassword( this.resetPass);
 
       this.PutOK = this.user.resetPasswordOK.subscribe({  next: ( params: any ) => {
       this.gral.dismissLoading();

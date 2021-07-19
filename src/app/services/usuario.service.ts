@@ -321,8 +321,8 @@ export class UsuarioService {
 
   public resetPasswordOK:Subject<any> = new Subject();
   public resetPasswordError:Subject<any> = new Subject();
-  resetPassword( model:ResetPasswordForm, token: String ){
-    this.http.put(this.configData['apiBaseUrl'] + this.configData['resetPasswordAction']+'/'+token, model,
+  resetPassword( model:ResetPasswordForm){
+    this.http.put(this.configData['apiBaseUrl'] + this.configData['resetPasswordAction']+'/'+model.id, model,
     { headers: new HttpHeaders({ 'Content-Type':  'application/json'}) }).subscribe(
         data => {
           this.LastElement = data;
