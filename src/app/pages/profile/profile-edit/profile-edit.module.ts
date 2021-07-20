@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ProfileEditComponent } from './profile-edit.component';
+import { ComponentsModule }     from '../../../components/components.module';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    ComponentsModule,
     ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild(routes)
