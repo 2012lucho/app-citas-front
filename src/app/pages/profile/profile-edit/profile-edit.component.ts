@@ -12,8 +12,6 @@ import { GenderService } from 'src/app/services/gender.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
-import { ContactInfo } from '../../../models/contact.info.model';
-
 @Component({
   selector: 'app-profile-edit',
   templateUrl: './profile-edit.component.html',
@@ -22,15 +20,12 @@ import { ContactInfo } from '../../../models/contact.info.model';
 export class ProfileEditComponent implements OnInit {
 
   public profileForm: FormGroup;
-  public contactInfo:ContactInfo = new ContactInfo();
   public profile = new Profile();
   public genders: Array<Gender> = null;
 
-  private PutOK:any  = null;
-  private PutError:any  = null;
-
-  public goToEditSubj: any =null;
-
+  private PutOK:any        = null;
+  private PutError:any     = null;
+  private goToEditSubj:any = null;
 
   constructor(
     public  gral:   AppUIUtilsService,
@@ -83,7 +78,6 @@ export class ProfileEditComponent implements OnInit {
   }
 
    initValuesForm(model: Profile){
-    console.log(this.profile);
     this.profileForm.patchValue({
       email: model.email,
       birth_date: model.birth_date,

@@ -40,7 +40,7 @@ export class ProfilePage {
   ngOnInit(): void {
     this.activatedRouteSubject = this.activatedRoute.params.subscribe((params: any) => {
         this.appUIUtilsService.presentLoading();
-        this.profileService.get( this.authService.getUserId() );
+        this.profileService.get( this.authService.getUserId(), '?expand=profileImages' );
     });
 
     this.setRequestsSubscriptions();
