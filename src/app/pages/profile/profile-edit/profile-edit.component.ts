@@ -10,7 +10,10 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { ConfigService } from 'src/app/services/config.service';
 import { GenderService } from 'src/app/services/gender.service';
 import { ProfileService } from 'src/app/services/profile.service';
+import { ProfileImageService } from 'src/app/services/profile.image.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+
+import { GalleryConfigModel } from 'src/app/components/gallery/gallery.config.model';
 
 @Component({
   selector: 'app-profile-edit',
@@ -22,6 +25,7 @@ export class ProfileEditComponent implements OnInit {
   public profileForm: FormGroup;
   public profile = new Profile();
   public genders: Array<Gender> = null;
+  public galleryConfig:GalleryConfigModel = new GalleryConfigModel();
 
   private PutOK:any        = null;
   private PutError:any     = null;
@@ -33,6 +37,7 @@ export class ProfileEditComponent implements OnInit {
     private profileService:   ProfileService,
     private activatedRoute:   ActivatedRoute,
     private userService:   UsuarioService,
+    private profileImageService: ProfileImageService,
     private genderService:   GenderService,
     public  config: ConfigService,
     private formBuilder: FormBuilder,
@@ -57,6 +62,10 @@ export class ProfileEditComponent implements OnInit {
         this.genderService.getAllOK.subscribe({  next: ( params: any ) => {
           this.setGenderData(params["items"]);
         } });
+
+        this.galleryConfig.actions.create = 'true';
+        this.galleryConfig.actions.delete = 'true';
+        this.galleryConfig.service        = this.profileImageService;
     });
   }
 

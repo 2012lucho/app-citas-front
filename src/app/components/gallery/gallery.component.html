@@ -11,7 +11,7 @@
 
       <ion-slides #slides pager="true" [options]="slideOpts" (ionSlideDidChange)="onSlideChanged( slides )">
           <ion-slide *ngFor="let image of imageData">
-            <ion-img [src]="image.path"></ion-img>
+            <ion-img [src]="image.url"></ion-img>
           </ion-slide>
       </ion-slides>
 

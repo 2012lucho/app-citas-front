@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild,  ElementRef, Input} from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 
-import { ImageDataModel } from './image.data.model';
+import { ImageDataModel }     from './image.data.model';
+import { GalleryConfigModel } from './gallery.config.model';
 
 @Component({
   selector: 'app-gallery',
@@ -10,6 +11,7 @@ import { ImageDataModel } from './image.data.model';
 })
 export class GalleryComponent implements OnInit {
   @Input() imageData: Array<ImageDataModel> = [];
+  @Input() config:GalleryConfigModel        = new GalleryConfigModel();
   @ViewChild('slides', {read: ElementRef, static:false}) slides: IonSlides;
 
   public slideOpts:any = {
