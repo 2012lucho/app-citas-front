@@ -15,7 +15,9 @@ const routes: Routes = [
   { path: 'profile-edit', loadChildren: () => import('./pages/profile/profile-edit/profile-edit.module').then(m => m.ProfileEditModule), canActivate: [AuthenticationGuard] },
   { path: 'reset-password', loadChildren: () => import( './pages/login/reset-password/reset-password.module').then(m => m.ResetPasswordModule) },
   { path: 'register', loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule) },
-  { path: 'reset-password-token', loadChildren: () => import('./pages/login/reset-password-form/reset-password-form.module').then(m => m.ResetPasswordFormModule) }
+  { path: 'reset-password-token', loadChildren: () => import('./pages/login/reset-password-form/reset-password-form.module').then(m => m.ResetPasswordFormModule) },
+  { path: 'verification-email', loadChildren: () => import('./pages/register/send-email/send-email.module').then(m => m.SendEmailModule), canActivate: [AuthenticationGuard] },
+  { path: 'confirm-email', loadChildren: () => import('./pages/register/confirm-email/confirm-email.module').then(m => m.ConfirmEmailModule)}
 
 ];
 @NgModule({
