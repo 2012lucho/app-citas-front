@@ -9,6 +9,7 @@ import { AuthService }     from './auth/auth.service';
 import { ChangePassword } from '../models/change-password';
 import { ResetPasswordForm } from '../models/reset-password-form';
 import { ResetPassword } from '../models/reset-password';
+import { Login } from '../models/login';
 
 @Injectable({ providedIn: 'root' })
 export class UsuarioService {
@@ -330,6 +331,36 @@ export class UsuarioService {
         },
         err =>  {
           this.resetPasswordError.next(err);
+        }
+      );
+  }
+
+  public verificationEmailOK:Subject<any> = new Subject();
+  public verificationEmailError:Subject<any> = new Subject();
+  verificationEmail( id: any ){
+    this.http.put(this.configData['apiBaseUrl'] + this.configData['verificationEmailAction']+'/'+id,
+    { headers: new HttpHeaders({ 'Content-Type':  'application/json'}) }).subscribe(
+        data => {
+          this.LastElement = data;
+          this.verificationEmailOK.next(data);
+        },
+        err =>  {
+          this.verificationEmailError.next(err);
+        }
+      );
+  }
+
+  public resendVerificationEmailOK:Subject<any> = new Subject();
+  public resendVerificationEmailError:Subject<any> = new Subject();
+  resendVerificationEmail( id : any, model: Login){
+    this.http.put(this.configData['apiBaseUrl'] + this.configData['resendVerificationEmailAction']+'/'+id, model,
+    { headers: new HttpHeaders({ 'Content-Type':  'application/json', 'Authorization':'Bearer ' + this.authService.getToken() }) }).subscribe(
+        data => {
+          this.LastElement = data;
+          this.resendVerificationEmailOK.next(data);
+        },
+        err =>  {
+          this.resendVerificationEmailError.next(err);
         }
       );
   }
