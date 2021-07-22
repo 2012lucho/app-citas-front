@@ -4,25 +4,31 @@
     <div class="logo">
       <img  src="assets/imgs/logo.png" />
     </div>
+  
+    <form [formGroup]="registerForm" class="col">
 
-    <ion-item >
-      <ion-label color="light">Email</ion-label>
-      <ion-input color="light" type="email" placeholder="Correo electrónico" required class="form-control ng-valid ng-touched bootstrapFieldError"></ion-input>
-    </ion-item>
+       <ion-item >
+         <ion-label color="light">Email</ion-label>
+         <ion-input color="light" type="email" placeholder="Correo electrónico" required class="form-control ng-valid ng-touched bootstrapFieldError" text-center formControlName="email"
+         [(ngModel)]="register.email"></ion-input>
+       </ion-item>
 
-    <ion-item >
-      <ion-label color="light">Usuario</ion-label>
-      <ion-input color="light" type="text" placeholder="Usuario" required class="form-control ng-valid ng-touched bootstrapFieldError"></ion-input>
-    </ion-item>
+      <ion-item >
+        <ion-label color="light">Usuario</ion-label>
+        <ion-input color="light" type="text" placeholder="Usuario" required class="form-control ng-valid ng-touched bootstrapFieldError" text-center formControlName="username"
+        [(ngModel)]="register.username"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label color="light">Contraseña</ion-label>
-      <ion-input color="light" type="password" placeholder="Contraseña" required class="form-control ng-valid ng-touched bootstrapFieldError"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label color="light">Contraseña</ion-label>
+        <ion-input color="light" type="password" placeholder="Contraseña" required class="form-control ng-valid ng-touched bootstrapFieldError" text-center formControlName="password"
+        [(ngModel)]="register.password"></ion-input>
+      </ion-item>
 
-    <ion-button color="light" expand="block" shape="round" fill="outline" (click)="next()">Registrarse</ion-button>
-    <br>
-    <ion-button color="tertiary" expand="block" shape="round" routerLink="/login">Iniciar Sesión</ion-button>
+      <ion-button color="light" expand="block" shape="round" fill="outline" (click)="next()">Registrarse</ion-button>
+      <br>
+      <ion-button color="tertiary" expand="block" shape="round" routerLink="/login">Iniciar Sesión</ion-button>
+    </form>
 
   </div>
 </ion-content>
