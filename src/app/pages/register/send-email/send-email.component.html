@@ -1,0 +1,21 @@
+<ion-content >
+  <div class="padding">
+
+    <div class="logo">
+      <img  src="assets/imgs/logo.png" />
+    </div>
+
+    <div class="form-check">
+      <p class="text-center">
+        Hemos enviado un correo electrónico de confirmación a <strong>{{ this.usuario }}</strong>
+      </p>
+      <p class="text-center">
+        Por favor revise su correo electrónico y haga clic en el enlace para verificar su correo electrónico.
+      </p>
+    </div>
+
+    <ion-button color="tertiary" expand="block" shape="round" fill="outline" (click)="next()">Reenviar verificacion de email</ion-button>
+
+
+  </div>
+</ion-content>

@@ -18,6 +18,9 @@ export class ConfigService {
       profileImageAction:"profileImages",
       changePasswordAction:"change-password",
       userAction:"users",
+      registerAction:"registers",
+      resendVerificationEmailAction: "resend-email-verification",
+      verificationEmailAction: "confirm-emails",
       resetPasswordEmailAction:"password-reset",
       resetPasswordAction:"change-password-token",
       appName: "app_citas_dev_"

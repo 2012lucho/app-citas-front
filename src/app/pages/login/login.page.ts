@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 import { Login }         from '../../models/login';
 
@@ -23,8 +24,13 @@ export class LoginPage implements OnInit {
 
   ngOnInit(): void {
     if ( this.auth.logedIn() ){
-      this.userService.setOnlineStatus( true );
-      this.router.navigate(['/tabs/tabs/chats']);
+      if ( this.auth.getVerificationEmailStatus ){
+        this.userService.setOnlineStatus( true );
+        this.router.navigate(['/tabs/tabs/chats']);
+      }else{
+        this.userService.setOnlineStatus( false );
+        this.router.navigate( [ '/verification-email' ] );
+      }
     }
   }
 

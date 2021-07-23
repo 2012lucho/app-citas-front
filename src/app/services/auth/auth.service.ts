@@ -8,6 +8,7 @@ import { ConfigService }   from '../config.service';
 import { AppUIUtilsService }   from '../app.ui.utils.service';
 import { ResetPassword } from 'src/app/models/reset-password';
 import { Subject } from 'rxjs';
+import { Usuario } from 'src/app/models/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -39,10 +40,15 @@ export class AuthService {
             localStorage.setItem( this.confGral['appName']+'role_id',      (data as any).role_id );
             localStorage.setItem( this.confGral['appName']+'id',           (data as any).id );
             localStorage.setItem( this.confGral['appName']+'online',       (data as any).online );
-            localStorage.setItem( this.confGral['appName']+'enterprise_id', JSON.stringify( (data as any).enterprise_id ) );
+            localStorage.setItem( this.confGral['appName']+'profile_id',       (data as any).profile_id );
+            localStorage.setItem( this.confGral['appName']+'verification_email',(data as any).verification_email );
             localStorage.setItem( this.confGral['appName']+'logedIn',      JSON.stringify( (data as any).status ) );
             localStorage.setItem( this.confGral['appName']+'userName',     JSON.stringify( (data as any).username ) );
-            this.router.navigate( ['/tabs/tabs/search'] );
+            if((data as any).verification_email === 0 || (data as any).verification_email === null){
+              this.router.navigate( [ '/verification-email' ] );
+            }else{
+              this.router.navigate(['/tabs/tabs/search']);
+            }
           } else {
             this.gral.showMessage( 'Usuario o contraseña incorrecta.' );
           }
@@ -56,6 +62,8 @@ export class AuthService {
           localStorage.setItem( this.confGral['appName']+'role_id',      '' );
           localStorage.setItem( this.confGral['appName']+'online',       JSON.stringify( false ));
           localStorage.setItem( this.confGral['appName']+'id',           JSON.stringify('' ) );
+          localStorage.setItem( this.confGral['appName']+'profile_id',           JSON.stringify('' ) );
+          localStorage.setItem( this.confGral['appName']+'verification_email',JSON.stringify('' ) );
           localStorage.setItem( this.confGral['appName']+'userName',     JSON.stringify( '' ) );
           this.gral.showMessage( 'Ha ocurrido un error, por favor reintente más tarde.' );
         }
@@ -115,6 +123,18 @@ export class AuthService {
     return Number( localStorage.getItem( this.confGral['appName']+'id' ) );
   }
 
+  getProfileId(){
+    return Number( localStorage.getItem( this.confGral['appName']+'profile_id' ) );
+  }
+
+  getVerificationEmailStatus(){
+    let verification:any = localStorage.getItem( this.confGral['appName']+'verification_email' );
+    if ( verification === 0 || verification === null ){
+      return false;
+    }
+    return (verification === "true");
+  }
+
   setOnlineStatus( online:any ){
     localStorage.setItem( this.confGral['appName']+'online', online );
   }
@@ -138,6 +158,21 @@ export class AuthService {
         },
         err =>  {
           this.resetPasswordEmailError.next(err);
+        }
+      );
+  }
+
+  public registerOK:Subject<any> = new Subject();
+  public registerError:Subject<any> = new Subject();
+  register( model:Usuario ){
+    this.http.post(this.confGral['apiBaseUrl'] + this.confGral['registerAction'], model,
+      { headers: new HttpHeaders({ 'Content-Type':  'application/json'}) }).subscribe(
+        data => {
+          this.LastElement = data;
+          this.registerOK.next(data);
+        },
+        err =>  {
+          this.registerError.next(err);
         }
       );
   }

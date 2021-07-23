@@ -46,7 +46,8 @@ export class ProfileEditComponent implements OnInit {
       gender_preference_id: ['', Validators.required],
     }
     );
-    this.goToEditSubj = this.profileService.goToEditSubj.subscribe({  next: ( params: any ) => {
+    this.profileService.get( this.authService.getProfileId() );
+    this.goToEditSubj = this.profileService.getOK.subscribe({  next: ( params: any ) => {
       this.setProfileData(params);
       this.initValuesForm(this.profile);
     } });
