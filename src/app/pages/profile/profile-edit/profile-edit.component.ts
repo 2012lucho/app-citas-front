@@ -89,7 +89,8 @@ export class ProfileEditComponent implements OnInit {
    }
 
     setProfileData( params:any ){
-      this.profile   = params;
+      this.profile                 = params;
+      this.galleryConfig.imageData = params.profileImages;
     }
 
     setGenderData( params:any ){
