@@ -34,4 +34,10 @@ export class GalleryComponent implements OnInit {
 
     }
   }
+
+  deletePhoto(){
+    if ( this.config.actions.delete ){
+      this.config.service.delete( this.config.imageData[this.actualIndex].id );
+    }
+  }
 }

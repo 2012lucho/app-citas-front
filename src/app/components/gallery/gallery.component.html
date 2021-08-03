@@ -9,6 +9,12 @@
         </ion-row>
       </ion-badge>
 
+      <ion-badge *ngIf="config.imageData.length != 0 && config.actions.delete">
+        <ion-row>
+          <ion-col><ion-icon name="trash" (click)="deletePhoto()"></ion-icon></ion-col>
+        </ion-row>
+      </ion-badge>
+
       <ion-slides #slides pager="true" [options]="slideOpts" (ionSlideDidChange)="onSlideChanged( slides )">
           <ion-slide class="text-center" *ngIf="config.actions.create">
             <ion-icon name="add" class="slide-btn" (click)="uploadPhoto()"></ion-icon>
