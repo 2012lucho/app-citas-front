@@ -1,11 +1,11 @@
 <ion-grid>
-  <ion-row *ngIf="imageData.length != 0">
+  <ion-row *ngIf="config.imageData.length != 0">
     <ion-col>
 
       <ion-badge>
         <ion-row>
           <ion-col><ion-icon name="camera-sharp"></ion-icon></ion-col>
-          <ion-col><span>{{actualIndex}}/{{imageData.length}}</span></ion-col>
+          <ion-col><span>{{actualIndex}}/{{config.imageData.length}}</span></ion-col>
         </ion-row>
       </ion-badge>
 
@@ -14,7 +14,7 @@
             <ion-icon name="add" class="slide-btn" (click)="uploadPhoto()"></ion-icon>
             <p>Subir Foto</p>
           </ion-slide>
-          <ion-slide *ngFor="let image of imageData">
+          <ion-slide *ngFor="let image of config.imageData">
             <ion-img [src]="image.url"></ion-img>
           </ion-slide>
       </ion-slides>
@@ -22,7 +22,7 @@
     </ion-col>
   </ion-row>
 
-  <ion-row *ngIf="imageData.length == 0">
+  <ion-row *ngIf="config.imageData.length == 0">
     <ion-col>
 
       <ion-badge>
