@@ -30,4 +30,10 @@ export class GalleryComponent implements OnInit {
       this.actualIndex = index +1;
     });
   }
+
+  uploadPhoto(){
+    if ( this.config.actions.create ){
+
+    }
+  }
 }

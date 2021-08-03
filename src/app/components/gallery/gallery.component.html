@@ -10,6 +10,10 @@
       </ion-badge>
 
       <ion-slides #slides pager="true" [options]="slideOpts" (ionSlideDidChange)="onSlideChanged( slides )">
+          <ion-slide class="text-center" *ngIf="config.actions.create">
+            <ion-icon name="add" class="slide-btn" (click)="uploadPhoto()"></ion-icon>
+            <p>Subir Foto</p>
+          </ion-slide>
           <ion-slide *ngFor="let image of imageData">
             <ion-img [src]="image.url"></ion-img>
           </ion-slide>
@@ -28,8 +32,9 @@
         </ion-row>
       </ion-badge>
 
-      <ion-avatar>
-        <img src="/assets/imgs/icon-profile.png">
+      <ion-avatar class="text-center">
+        <ion-icon name="add" class="slide-btn"></ion-icon>
+        <p>Subir Foto</p>
       </ion-avatar>
 
     </ion-col>
