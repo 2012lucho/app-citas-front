@@ -27,9 +27,11 @@ export class ProfileEditComponent implements OnInit {
   public genders: Array<Gender> = null;
   public galleryConfig:GalleryConfigModel = new GalleryConfigModel();
 
-  private PutOK:any        = null;
-  private PutError:any     = null;
-  private goToEditSubj:any = null;
+  private PutOK:any             = null;
+  private PutError:any          = null;
+  private goToEditSubj:any      = null;
+  private genderGetAllOk:any    = null;
+  private genderGetAllError:any = null;
 
   constructor(
     public  gral:   AppUIUtilsService,
@@ -46,6 +48,8 @@ export class ProfileEditComponent implements OnInit {
   private activatedRouteSubject:any = null;
   ngOnInit() {
     this.activatedRouteSubject = this.activatedRoute.params.subscribe((params: any) => {
+        this.setRequestSubscriptions();
+
         this.profileForm = this.formBuilder.group({
           email: ['', Validators.required],
           birth_date: [''],
@@ -54,35 +58,23 @@ export class ProfileEditComponent implements OnInit {
           gender_preference_id: ['', Validators.required],
         }
         );
+
         this.goToEditSubj = this.profileService.goToEditSubj.subscribe({  next: ( params: any ) => {
           this.setProfileData(params);
           this.initValuesForm(this.profile);
         } });
         this.genderService.getAll();
-        this.genderService.getAllOK.subscribe({  next: ( params: any ) => {
-          this.setGenderData(params["items"]);
-        } });
 
         this.galleryConfig.actions.create = 'true';
         this.galleryConfig.actions.delete = 'true';
         this.galleryConfig.service        = this.profileImageService;
+
     });
   }
 
   next(){
     if(this.profileForm.valid){
       this.profileService.put(this.profile);
-      this.PutOK = this.profileService.PutOK.subscribe({  next: ( params: any ) => {
-         this.gral.dismissLoading();
-         this.gral.showMessage('Datos actualizados');
-         this.userService.goToProfile();
-      } });
-
-      this.PutError = this.profileService.PutKO.subscribe({  next: ( params: any ) => {
-         this.gral.dismissLoading();
-         this.gral.showMessage('Ocurrió un error, reintente más tarde.');
-      } });
-
     }
   }
 
@@ -112,8 +104,32 @@ export class ProfileEditComponent implements OnInit {
       this.profile.gender_preference_id = id;
     }
 
+    setRequestSubscriptions(){
+      this.PutOK = this.profileService.PutOK.subscribe({  next: ( params: any ) => {
+         this.gral.dismissLoading();
+         this.gral.showMessage('Datos actualizados');
+         this.userService.goToProfile();
+      } });
+
+      this.PutError = this.profileService.PutKO.subscribe({  next: ( params: any ) => {
+         this.gral.dismissLoading();
+         this.gral.showMessage('Ocurrió un error, reintente más tarde.');
+      } });
+
+      this.genderGetAllOk = this.genderService.getAllOK.subscribe({  next: ( params: any ) => {
+        this.setGenderData(params["items"]);
+      } });
+
+      this.genderGetAllError = this.genderService.getAllError.subscribe({  next: ( params: any ) => {
+         this.gral.dismissLoading();
+         this.gral.showMessage('Ocurrió un error, reintente más tarde.');
+      } });
+    }
+
     unSetRequestsSubscriptions(){
       this.PutError.unsubscribe();
+      this.genderGetAllOk.unsubscribe();
+      this.genderGetAllError.unsubscribe();
       this.PutOK.unsubscribe();
     }
 
