@@ -32,6 +32,8 @@ export class ProfileEditComponent implements OnInit {
   private goToEditSubj:any      = null;
   private genderGetAllOk:any    = null;
   private genderGetAllError:any = null;
+  private profileImgDelOk:any   = null;
+  private profileImgDelError:any = null;
 
   constructor(
     public  gral:   AppUIUtilsService,
@@ -106,6 +108,7 @@ export class ProfileEditComponent implements OnInit {
     }
 
     setRequestSubscriptions(){
+      ///// PROFILE
       this.PutOK = this.profileService.PutOK.subscribe({  next: ( params: any ) => {
          this.gral.dismissLoading();
          this.gral.showMessage('Datos actualizados');
@@ -117,11 +120,23 @@ export class ProfileEditComponent implements OnInit {
          this.gral.showMessage('Ocurrió un error, reintente más tarde.');
       } });
 
+      //// GENDER
       this.genderGetAllOk = this.genderService.getAllOK.subscribe({  next: ( params: any ) => {
         this.setGenderData(params["items"]);
       } });
 
       this.genderGetAllError = this.genderService.getAllError.subscribe({  next: ( params: any ) => {
+         this.gral.dismissLoading();
+         this.gral.showMessage('Ocurrió un error, reintente más tarde.');
+      } });
+
+      //// PROFILE IMAGE
+      this.profileImgDelOk = this.profileImageService.deleteOK.subscribe({  next: ( params: any ) => {
+        this.gral.dismissLoading();
+        this.gral.showMessage('Imagen de perfil eliminada.');
+      } });
+
+      this.profileImgDelError = this.profileImageService.deleteError.subscribe({  next: ( params: any ) => {
          this.gral.dismissLoading();
          this.gral.showMessage('Ocurrió un error, reintente más tarde.');
       } });
@@ -132,6 +147,8 @@ export class ProfileEditComponent implements OnInit {
       this.genderGetAllOk.unsubscribe();
       this.genderGetAllError.unsubscribe();
       this.PutOK.unsubscribe();
+      this.profileImgDelOk.unsubscribe();
+      this.profileImgDelError.unsubscribe();
     }
 
     ngOnDestroy(){
