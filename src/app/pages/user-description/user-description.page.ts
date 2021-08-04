@@ -7,6 +7,7 @@ import { AppUIUtilsService } from '../../services/app.ui.utils.service';
 
 import { Profile } from '../../models/profile';
 import { ContactInfo } from '../../models/contact.info.model';
+import { GalleryConfigModel } from 'src/app/components/gallery/gallery.config.model';
 
 @Component({
   selector: 'app-user-description',
@@ -16,6 +17,7 @@ import { ContactInfo } from '../../models/contact.info.model';
 export class UserDescriptionPage {
 
   public contactInfo:ContactInfo = new ContactInfo();
+  public galleryConfig:GalleryConfigModel = new GalleryConfigModel();
 
   constructor(
     private authService:       AuthService,
@@ -27,7 +29,8 @@ export class UserDescriptionPage {
   private activatedRouteSubject:any = null;
   ngOnInit(): void {
     this.activatedRouteSubject = this.activatedRoute.params.subscribe((params: any) => {
-        this.contactInfo = this.profileService.getContactInfo();
+        this.contactInfo             = this.profileService.getContactInfo();
+        this.galleryConfig.imageData = this.contactInfo.profile.profileImages;
     });
 
     this.setRequestsSubscriptions();

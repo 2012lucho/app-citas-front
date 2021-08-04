@@ -55,8 +55,8 @@ export class ProfileService {
 
   public getOK:Subject<any>           = new Subject();
   public getError:Subject<any>           = new Subject();
-  get( id:number ){
-    this.http.get( this.configData['apiBaseUrl'] + this.configData[ this.mainAction ]+'/'+id,
+  get( id:number, params:string = '' ){
+    this.http.get( this.configData['apiBaseUrl'] + this.configData[ this.mainAction ]+'/'+id+params,
       { headers: new HttpHeaders({ 'Content-Type':  'application/json', 'Authorization':'Bearer ' + this.authService.getToken() }) }).subscribe(
         data => {
             this.LastElement = data;

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild,  ElementRef, Input} from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 
-import { ImageDataModel } from './image.data.model';
+import { GalleryConfigModel } from './gallery.config.model';
 
 @Component({
   selector: 'app-gallery',
@@ -9,7 +9,7 @@ import { ImageDataModel } from './image.data.model';
   styleUrls: ['./gallery.component.scss'],
 })
 export class GalleryComponent implements OnInit {
-  @Input() imageData: Array<ImageDataModel> = [];
+  @Input() config:GalleryConfigModel        = new GalleryConfigModel();
   @ViewChild('slides', {read: ElementRef, static:false}) slides: IonSlides;
 
   public slideOpts:any = {
@@ -27,5 +27,17 @@ export class GalleryComponent implements OnInit {
     slide.getActiveIndex().then((index: number) => {
       this.actualIndex = index +1;
     });
+  }
+
+  uploadPhoto(){
+    if ( this.config.actions.create ){
+
+    }
+  }
+
+  deletePhoto(){
+    if ( this.config.actions.delete ){
+      this.config.service.delete( this.config.imageData[this.actualIndex].id );
+    }
   }
 }

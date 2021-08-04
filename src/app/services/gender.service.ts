@@ -21,7 +21,7 @@ export class GenderService {
   private configData:any = {};
 
   public getAllOK:Subject<any>           = new Subject();
-  public getAllKO:Subject<any>           = new Subject();
+  public getAllError:Subject<any>           = new Subject();
 
   private LastElement:any = {};
   private mainAction:string = 'genderAction';
@@ -33,7 +33,7 @@ export class GenderService {
             this.getAllOK.next(data);
         },
         err =>  {
-            this.getAllKO.next(err);
+            this.getAllError.next(err);
         }
       );
   }

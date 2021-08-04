@@ -8,14 +8,14 @@ export class ConfigService {
 
   public getConfigData(){
     return {
-      apiBaseUrl:"http://localhost/app-citas-back/web/", //http://app-citas-api.coodesoft.com.ar?r=
+      apiBaseUrl:"http://localhost/app-citas-back/web/",
       loginAction:"login",
       chatRoomAction:"chat-rooms",
       messageAction:"messages",
       genderAction:"genders",
       matchesAction:"matches",
       profileAction:"profiles",
-      profileImageAction:"profileImages",
+      profileImageAction:"profile-images",
       changePasswordAction:"change-password",
       userAction:"users",
       registerAction:"registers",

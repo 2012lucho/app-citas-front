@@ -1,24 +1,34 @@
 <ion-grid>
-  <ion-row *ngIf="imageData.length != 0">
+  <ion-row *ngIf="config.imageData.length != 0">
     <ion-col>
 
       <ion-badge>
         <ion-row>
           <ion-col><ion-icon name="camera-sharp"></ion-icon></ion-col>
-          <ion-col><span>{{actualIndex}}/{{imageData.length}}</span></ion-col>
+          <ion-col><span>{{actualIndex}}/{{config.imageData.length}}</span></ion-col>
+        </ion-row>
+      </ion-badge>
+
+      <ion-badge *ngIf="config.imageData.length != 0 && config.actions.delete">
+        <ion-row>
+          <ion-col><ion-icon name="trash" (click)="deletePhoto()"></ion-icon></ion-col>
         </ion-row>
       </ion-badge>
 
       <ion-slides #slides pager="true" [options]="slideOpts" (ionSlideDidChange)="onSlideChanged( slides )">
-          <ion-slide *ngFor="let image of imageData">
-            <ion-img [src]="image.path"></ion-img>
+          <ion-slide class="text-center" *ngIf="config.actions.create">
+            <ion-icon name="add" class="slide-btn" (click)="uploadPhoto()"></ion-icon>
+            <p>Subir Foto</p>
+          </ion-slide>
+          <ion-slide *ngFor="let image of config.imageData">
+            <ion-img [src]="image.url"></ion-img>
           </ion-slide>
       </ion-slides>
 
     </ion-col>
   </ion-row>
 
-  <ion-row *ngIf="imageData.length == 0">
+  <ion-row *ngIf="config.imageData.length == 0">
     <ion-col>
 
       <ion-badge>
@@ -28,8 +38,9 @@
         </ion-row>
       </ion-badge>
 
-      <ion-avatar>
-        <img src="/assets/imgs/icon-profile.png">
+      <ion-avatar class="text-center">
+        <ion-icon name="add" class="slide-btn"></ion-icon>
+        <p>Subir Foto</p>
       </ion-avatar>
 
     </ion-col>

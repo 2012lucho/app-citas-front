@@ -85,7 +85,7 @@ export class ProfileImageService {
   }
 
   public deleteOK:Subject<any> = new Subject();
-  public deleteKO:Subject<any> = new Subject();
+  public deleteError:Subject<any> = new Subject();
   delete( id:number ){
     this.http.delete( this.configData['apiBaseUrl'] + this.configData[ this.mainAction ]+'/'+id,
       { headers: new HttpHeaders({ 'Content-Type':  'application/json', 'Authorization':'Bearer ' + this.authService.getToken() }) }).subscribe(
@@ -93,7 +93,7 @@ export class ProfileImageService {
             this.deleteOK.next(data);
         },
         err =>  {
-            this.deleteKO.next(err);
+            this.deleteError.next(err);
         }
       );
   }

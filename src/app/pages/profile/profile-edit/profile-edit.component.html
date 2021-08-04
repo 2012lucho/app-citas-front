@@ -8,51 +8,59 @@
 
 <ion-content>
   <div class="padding">
-      <form [formGroup]="profileForm" class="col">
+      <ion-row>
+        <ion-col>
+          <app-gallery [config]="galleryConfig"></app-gallery>
+        </ion-col>
+      </ion-row>
 
-          <ion-item>
-              <ion-label>Email:</ion-label>
-              <ion-input type="email" required class="form-control ng-valid ng-touched bootstrapFieldError" placeholder="Email" text-center formControlName="email"
-              [(ngModel)]="profile.email"></ion-input>
-          </ion-item>
+      <ion-row>
+        <form [formGroup]="profileForm" class="col">
 
-          <ion-item>
-            <ion-label>Fecha de Nacimiento:</ion-label>
-            <ion-input type="date" placeholder="Fecha de nacimiento" text-center formControlName="birth_date"
-            [(ngModel)]="profile.birth_date"></ion-input>
-          </ion-item>
+            <ion-item>
+                <ion-label>Email:</ion-label>
+                <ion-input type="email" required class="form-control ng-valid ng-touched bootstrapFieldError" placeholder="Email" text-center formControlName="email"
+                [(ngModel)]="profile.email"></ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-label>Descripción:</ion-label>
-            <ion-input type="text"  placeholder="Descripción" text-center formControlName="description"
-            [(ngModel)]="profile.description"></ion-input>
-          </ion-item>
+            <ion-item>
+              <ion-label>Fecha de Nacimiento:</ion-label>
+              <ion-input type="date" placeholder="Fecha de nacimiento" text-center formControlName="birth_date"
+              [(ngModel)]="profile.birth_date"></ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-label>Genero:</ion-label>
-            <select text-center formControlName="gender_id"
-            [(ngModel)]="profile.gender_id" (change)='onChangeGender(profile.gender_id)'>
-               <option ng-selected="profile.gender_id" value="{{gender.id}}" *ngFor="let gender of genders">{{gender.type}}</option>
-            </select>
-          </ion-item>
+            <ion-item>
+              <ion-label>Descripción:</ion-label>
+              <ion-input type="text"  placeholder="Descripción" text-center formControlName="description"
+              [(ngModel)]="profile.description"></ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-label>Busco:</ion-label>
-            <select text-center formControlName="gender_preference_id" required class="form-control ng-valid ng-touched bootstrapFieldError"
-            [(ngModel)]="profile.gender_preference_id" (change)='onChangeGenderPreference(profile.gender_preference_id)'>
-                <option ng-selected="profile.gender_preference_id" value="{{gender.id}}" *ngFor="let gender of genders">{{gender.type}}</option>
-            </select>
-          </ion-item>
+            <ion-item>
+              <ion-label>Genero:</ion-label>
+              <select text-center formControlName="gender_id"
+              [(ngModel)]="profile.gender_id" (change)='onChangeGender(profile.gender_id)'>
+                 <option ng-selected="profile.gender_id" value="{{gender.id}}" *ngFor="let gender of genders">{{gender.type}}</option>
+              </select>
+            </ion-item>
 
-          <br>
+            <ion-item>
+              <ion-label>Busco:</ion-label>
+              <select text-center formControlName="gender_preference_id" required class="form-control ng-valid ng-touched bootstrapFieldError"
+              [(ngModel)]="profile.gender_preference_id" (change)='onChangeGenderPreference(profile.gender_preference_id)'>
+                  <option ng-selected="profile.gender_preference_id" value="{{gender.id}}" *ngFor="let gender of genders">{{gender.type}}</option>
+              </select>
+            </ion-item>
 
-          <ion-button color="medium" expand="block" shape="round" fill="outline" (click)="next()">
-              Confirmar
-          </ion-button>
-          <ion-button color="medium" expand="block" shape="round" routerLink="/tabs/tabs/profile">
-              Volver
-          </ion-button>
+            <br>
 
-      </form>
+            <ion-button color="medium" expand="block" shape="round" fill="outline" (click)="next()">
+                Confirmar
+            </ion-button>
+            <ion-button color="medium" expand="block" shape="round" routerLink="/tabs/tabs/profile">
+                Volver
+            </ion-button>
+
+        </form>
+      </ion-row>
   </div>
 </ion-content>
