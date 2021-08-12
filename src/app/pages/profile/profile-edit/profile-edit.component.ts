@@ -49,25 +49,7 @@ export class ProfileEditComponent implements OnInit {
 
   private activatedRouteSubject:any = null;
   ngOnInit() {
-<<<<<<< HEAD
-    this.profileForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      birth_date: [''],
-      description: [''],
-      gender_id: [''],
-      gender_preference_id: ['', Validators.required],
-    }
-    );
-    this.profileService.get( this.authService.getProfileId() );
-    this.goToEditSubj = this.profileService.getOK.subscribe({  next: ( params: any ) => {
-      this.setProfileData(params);
-      this.initValuesForm(this.profile);
-    } });
-    this.genderService.getAll();
-    this.genderService.getAllOK.subscribe({  next: ( params: any ) => {
-      this.setGenderData(params["items"]);
-    } });
-=======
+
     this.activatedRouteSubject = this.activatedRoute.params.subscribe((params: any) => {
         this.setRequestSubscriptions();
 
@@ -91,7 +73,7 @@ export class ProfileEditComponent implements OnInit {
         this.galleryConfig.service        = this.profileImageService;
 
     });
->>>>>>> issue#26
+
   }
 
   next(){
@@ -140,26 +122,10 @@ export class ProfileEditComponent implements OnInit {
          this.gral.showMessage('Ocurrió un error, reintente más tarde.');
       } });
 
-<<<<<<< HEAD
- initValuesForm(model: Profile){
-  this.profileForm.patchValue({
-    email: model.email,
-    birth_date: model.birth_date,
-    description: model.description,
-    gender_id: model.gender_id,
-    gender_preference_id: model.gender_preference_id,
-  })
- }
-
-setProfileData( params:any ){
-  this.profile   = params;
-}
-=======
       //// GENDER
       this.genderGetAllOk = this.genderService.getAllOK.subscribe({  next: ( params: any ) => {
         this.setGenderData(params["items"]);
       } });
->>>>>>> issue#26
 
       this.genderGetAllError = this.genderService.getAllError.subscribe({  next: ( params: any ) => {
          this.gral.dismissLoading();
