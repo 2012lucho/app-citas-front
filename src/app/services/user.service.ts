@@ -106,8 +106,6 @@ export class UserService {
     let model:any = {
       id:       this.authService.getUserId(),
       online:   online,
-      state_id: 1,
-      role_id:  this.authService.getRoleId()
     };
     this.put( model );
   }
