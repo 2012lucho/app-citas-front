@@ -7,10 +7,8 @@ import { AuthService }            from './auth/auth.service';
 
 import { Profile }  from '../models/profile';
 import { ContactInfo } from '../models/contact.info.model';
+import { Search } from '../models/search.model';
 import { Router } from '@angular/router';
-
-
-
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
@@ -80,6 +78,20 @@ export class ProfileService {
         },
         err =>  {
             this.PostKO.next(err);
+        }
+      );
+  }
+
+  public SearchOK:Subject<any> = new Subject();
+  public SearchError:Subject<any> = new Subject();
+  search( model:Search ){
+    this.http.post( this.configData['apiBaseUrl'] + this.configData[ 'searchProfiles' ], model,
+      { headers: new HttpHeaders({ 'Content-Type':  'application/json', 'Authorization':'Bearer ' + this.authService.getToken() }) }).subscribe(
+        data => {
+            this.SearchOK.next(data);
+        },
+        err =>  {
+            this.SearchError.next(err);
         }
       );
   }
