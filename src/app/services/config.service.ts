@@ -23,6 +23,7 @@ export class ConfigService {
       verificationEmailAction: "confirm-emails",
       resetPasswordEmailAction:"password-reset",
       resetPasswordAction:"change-password-token",
+      searchProfiles:"search-profiles",
       appName: "app_citas_dev_"
     };
   }
