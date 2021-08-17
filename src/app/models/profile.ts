@@ -12,4 +12,6 @@ export class Profile {
   public genderPreference:any            = { id:-1, type:'' };
   public image_src:string                = '';
   public profileImages:Array<ProfileImage> = [];
+  public lat:number                      = null;
+  public lng:number                      = null;
 }
