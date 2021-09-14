@@ -25,7 +25,7 @@
     "@angular/platform-browser": "^9.1.13",
     "@angular/platform-browser-dynamic": "^9.1.13",
     "@angular/router": "^9.1.13",
-    "@ionic-native/camera": "^5.34.0",
+    "@ionic-native/camera": "^5.36.0",
     "@ionic-native/core": "^5.0.7",
     "@ionic-native/document-viewer": "^5.34.0",
     "@ionic-native/file-transfer": "^5.34.0",
@@ -45,6 +45,7 @@
     "popper.js": "^1.16.1",
     "rxjs": "^6.5.5",
     "tslib": "^1.10.0",
+    "uuid": "^7.0.3",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
