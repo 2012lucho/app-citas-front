@@ -8,7 +8,7 @@ export class ConfigService {
 
   public getConfigData(){
     return {
-      apiBaseUrl:"http://localhost/app-citas-back/web/",
+      apiBaseUrl:"https://citas.api.greenborn.com.ar/",
       loginAction:"login",
       chatRoomAction:"chat-rooms",
       messageAction:"messages",
