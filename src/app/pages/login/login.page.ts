@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router }            from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -14,6 +14,7 @@ import { UserService }     from '../../services/user.service';
 })
 export class LoginPage implements OnInit {
 
+  @ViewChild('pass', { read: ElementRef, static:false }) passInput: ElementRef;
   public login:Login = new Login();
 
   constructor(
@@ -36,6 +37,21 @@ export class LoginPage implements OnInit {
 
   next(){
     this.auth.login( this.login );
+  }
+
+  keyPress( e, input ){
+    if (e.key == "Enter"){
+      
+      if (input == "pass") {
+        this.next();
+      }
+
+      if (input == "email"){
+        setTimeout(()=>{
+          this.passInput.nativeElement.focus();
+        },100);
+      }
+    }
   }
 
 }
